@@ -1,6 +1,6 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { NgForm } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '../../model/user.interface';
 import { AuthActions } from '../../store/actions/auth.action-types';
 
@@ -11,18 +11,41 @@ import { AuthActions } from '../../store/actions/auth.action-types';
 })
 export class SignupComponent {
 
-  @ViewChild('form') form: NgForm;
-
-  constructor(private store: Store) {}
+  form: FormGroup = this.createForm();
 
   hidePassword: boolean = true;
+
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+  ) {}
+
+  get login(): AbstractControl | null {
+    return this.form.get('login');
+  }
+
+  get name(): AbstractControl | null {
+    return this.form.get('name');
+  }
+
+  get password(): AbstractControl | null {
+    return this.form.get('password');
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
+      login: this.fb.control(null, Validators.required),
+      name: this.fb.control(null, Validators.required),
+      password: this.fb.control(null, Validators.required),
+    });
+  }
 
   submit() {
     if (this.form.valid) {
       const user: User = {
-        login: this.form.controls['login'].value,
-        name: this.form.controls['name'].value,
-        password: this.form.controls['password'].value,
+        login: this.login?.value,
+        name: this.name?.value,
+        password: this.password?.value,
       };
       this.store.dispatch(AuthActions.signup({ user }));
     }
