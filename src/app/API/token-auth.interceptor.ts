@@ -6,21 +6,21 @@ import {
   HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+/* import { selectToken } from '../auth/store/selectors/auth.selectors'; */
 
 @Injectable()
 export class TokenAuthInterceptor implements HttpInterceptor {
-  //The token for:
-  //login: "user001",
-  //password: "userpass@123"
 
-  token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJkYzU3ZmIyZi0wMjEwLTRjZDctOTRlMC1kZWJhMjM0OTM5NDEiLCJsb2dpbiI6InVzZXIwMDEiLCJpYXQiOjE2NTE0MTY0Mjd9.Dkm7H4fjs-cAQZKwwdpiQnkc9CYBlI4NWx2BuosJEMA';
+  constructor(private store : Store) {
+  }
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    let token = this.token;
+    /* let token = this.store.select(selectToken); */
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjkzZjJkZi01MTYyLTQ0MWQtYTUyNi1iMjBhNTczODgwMGQiLCJsb2dpbiI6InVzZXIwMDEiLCJpYXQiOjE2NTE0MzYzMjd9.I8LGlSKsCmflN7d3r0B-gU04ijQPpfbqGTN9rj2lyNk';
     request = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
