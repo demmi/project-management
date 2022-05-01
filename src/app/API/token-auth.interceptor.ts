@@ -11,19 +11,19 @@ import { Store } from '@ngrx/store';
 
 @Injectable()
 export class TokenAuthInterceptor implements HttpInterceptor {
+  token =
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjkzZjJkZi01MTYyLTQ0MWQtYTUyNi1iMjBhNTczODgwMGQiLCJsb2dpbiI6InVzZXIwMDEiLCJpYXQiOjE2NTE0MzYzMjd9.I8LGlSKsCmflN7d3r0B-gU04ijQPpfbqGTN9rj2lyNk';
 
-  constructor(private store : Store) {
-  }
+  constructor(private store: Store) {}
 
   intercept(
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    /* let token = this.store.select(selectToken); */
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI1YjkzZjJkZi01MTYyLTQ0MWQtYTUyNi1iMjBhNTczODgwMGQiLCJsb2dpbiI6InVzZXIwMDEiLCJpYXQiOjE2NTE0MzYzMjd9.I8LGlSKsCmflN7d3r0B-gU04ijQPpfbqGTN9rj2lyNk';
+    /* this.token = this.store.select(selectToken); */
     request = request.clone({
       setHeaders: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${this.token}`,
       },
     });
     return next.handle(request);
