@@ -8,6 +8,10 @@ import { reducers, metaReducers } from './reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
+import { AuthModule } from './auth/auth.module';
+import { AuthEffects } from './auth/store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,14 @@ import { EffectsModule } from '@ngrx/effects';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    SharedModule,
     StoreModule.forRoot(reducers, {
-      metaReducers
+      metaReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
+    BrowserAnimationsModule,
+    AuthModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
