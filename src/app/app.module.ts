@@ -11,6 +11,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { AuthEffects } from './auth/store/effects/auth.effects';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { AuthModule } from './auth/auth.module';
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     AuthModule,
   ],
