@@ -37,10 +37,7 @@ export class LoginComponent {
 
   submit(): void {
     if (this.form.valid) {
-      const user: User = {
-        login: this.login?.value,
-        password: this.password?.value,
-      };
+      const user: User = { ...this.form.value };
       this.store.dispatch(AuthActions.login({ user }));
     }
   }

@@ -42,11 +42,7 @@ export class SignupComponent {
 
   submit() {
     if (this.form.valid) {
-      const user: User = {
-        login: this.login?.value,
-        name: this.name?.value,
-        password: this.password?.value,
-      };
+      const user: User = { ...this.form.value };
       this.store.dispatch(AuthActions.signup({ user }));
     }
   }
