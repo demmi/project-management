@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,8 +12,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/effects/auth.effects';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenAuthInterceptor } from './API/token-auth.interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: TokenAuthInterceptor,
+  multi: true,
+};
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,12 +33,15 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production,
+    }),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
