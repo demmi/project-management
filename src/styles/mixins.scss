@@ -14,3 +14,14 @@
     margin: 20px auto;
   }
 }
+
+@mixin flex-layout(
+  $direction: row,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
