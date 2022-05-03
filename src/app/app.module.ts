@@ -12,10 +12,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/effects/auth.effects';
+import { HeaderComponent } from './core/pages/header/header.component';
+import {MatToolbarModule} from "@angular/material/toolbar";
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -24,10 +28,12 @@ import { AuthEffects } from './auth/store/effects/auth.effects';
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     AuthModule,
+    MatToolbarModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
