@@ -10,47 +10,22 @@ export interface Auth {
 }
 
 export interface Board {
-  id: string;
-  title: string;
-}
-
-export interface BoardChange {
+  id?: string;
   title: string;
 }
 
 export interface Column {
-  id: string;
-  title: string;
-  order: number;
-}
-
-export interface ColumnChange {
+  id?: string;
   title: string;
   order: number;
 }
 
 export interface Task {
-  id: string;
+  id?: string;
   title: string;
   order: number;
   description: string;
   userId: { description: string };
-  boardId: { description: string };
-  columnId: string;
-}
-
-export interface TaskCreate {
-  title: string;
-  order: number;
-  description: string;
-  userId: { description: string };
-}
-
-export interface TaskUpdate {
-  title: string;
-  order: number;
-  description: string;
-  userId: { description: string };
-  boardId: { description: string };
-  columnId: string;
+  boardId?: { description: string };
+  columnId?: string;
 }

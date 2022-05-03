@@ -7,7 +7,7 @@ import { Auth, BoardChange, ColumnChange, Registration, TaskCreate, TaskUpdate }
 })
 export class ApiKanbanRestService {
   backendURL = 'http://localhost:4200/api/';
-  /* backendURL = 'https://api.devcore.uz/'; */
+  /* backendURL = 'https://api.devcore.uz/api/'; */
 
   constructor(private http: HttpClient) {}
 
