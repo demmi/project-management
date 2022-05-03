@@ -1,16 +1,12 @@
 <mat-card-content>
-  <form #form="ngForm" (ngSubmit)="submit()">
+  <form [formGroup]="form" (ngSubmit)="submit()">
 
     <mat-form-field>
       <input
         matInput
         placeholder="Name"
-        required
-        name="name"
-        ngModel
-        #name="ngModel">
-      <mat-error
-        *ngIf="name.invalid">
+        formControlName="name">
+      <mat-error *ngIf="name?.hasError('required')">
         Name is required
       </mat-error>
     </mat-form-field>
@@ -19,22 +15,18 @@
       <input
         matInput
         placeholder="Login"
-        required
-        name="login"
-        ngModel
-        #login="ngModel">
-      <mat-error *ngIf="login.invalid">Login is required</mat-error>
+        formControlName="login">
+      <mat-error *ngIf="login?.hasError('required')">
+        Login is required
+      </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input
         matInput
         placeholder="Password"
-        [type]="hidePassword ? 'password' : 'text'"
-        required
-        name="password"
-        ngModel
-        #password="ngModel">
+        formControlName="password"
+        [type]="hidePassword ? 'password' : 'text'">
       <button
         mat-icon-button
         matSuffix
@@ -43,7 +35,7 @@
         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
         <mat-error
-          *ngIf="password.errors && password.errors['required']">
+          *ngIf="password?.hasError('required')">
           Password is required
         </mat-error>
     </mat-form-field>
