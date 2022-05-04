@@ -10,16 +10,18 @@
   background-repeat: no-repeat;
   background-size: cover;
   overflow: hidden;
-}
 
-mat-card {
-  width: 30%;
-  min-width: 275px;
-  margin: 10% auto;
-  border-radius: 8px;
+  mat-card {
+    width: 30%;
+    min-width: 275px;
+    margin: 10% auto;
+    border-radius: 8px;
 
-  &-title {
-    text-align:center;
+    &-title {
+      text-align:center;
+    }
   }
 }
+
+
 
