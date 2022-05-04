@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Provider } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -16,11 +16,20 @@ import { HeaderComponent } from './core/pages/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { MatMenuModule } from '@angular/material/menu';
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { TokenAuthInterceptor } from './API/token-auth.interceptor';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 
+const INTERCEPTOR_PROVIDER: Provider = {
+  provide: HTTP_INTERCEPTORS,
+  useClass: TokenAuthInterceptor,
+  multi: true,
+};
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
+    HeaderComponent,    
+    PageNotFoundComponent,
   ],
     imports: [
         BrowserModule,
@@ -37,7 +46,8 @@ import {MatSlideToggleModule} from "@angular/material/slide-toggle";
         MatMenuModule,
         MatSlideToggleModule,
     ],
-  providers: [],
+  ],
+  providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
