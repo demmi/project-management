@@ -1,0 +1,27 @@
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+p {
+  font-size: 24px;
+}
+
+.link {
+  font-size: 12px;
+  height: 30px !important;
+}
+
+.rs-link {
+  text-decoration: none;
+}
+
+.rs-link:visited {
+  color: black;
+}
+
+.logo {
+  width: 150px;
+  height: 50px;
+}
