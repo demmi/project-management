@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { User } from '../../model/user.interface';
 import { AuthActions } from '../../store/actions/auth.action-types';
@@ -11,19 +11,33 @@ import { AuthActions } from '../../store/actions/auth.action-types';
 })
 export class LoginComponent {
 
-  @ViewChild('form') form: NgForm;
+  form: FormGroup = this.createForm();
 
   hidePassword: boolean = true;
 
-  constructor(private store: Store) {
+  constructor(
+    private store: Store,
+    private fb: FormBuilder,
+  ) {}
+
+  get login(): AbstractControl | null {
+    return this.form.get('login');
   }
 
-  submit() {
+  get password(): AbstractControl | null {
+    return this.form.get('password');
+  }
+
+  createForm(): FormGroup {
+    return this.fb.group({
+      login: this.fb.control(null, Validators.required),
+      password: this.fb.control(null, Validators.required),
+    });
+  }
+
+  submit(): void {
     if (this.form.valid) {
-      const user: User = {
-        login: this.form.controls['login'].value,
-        password: this.form.controls['password'].value,
-      };
+      const user: User = { ...this.form.value };
       this.store.dispatch(AuthActions.login({ user }));
     }
   }

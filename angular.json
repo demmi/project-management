@@ -120,6 +120,7 @@
   },
   "defaultProject": "project-management",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }
