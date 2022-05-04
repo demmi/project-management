@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
 import { Board } from '../../interface/interface';
+import { ProjectsService } from './projects.service';
 
 @Component({
   selector: 'app-projects',
@@ -11,9 +11,9 @@ import { Board } from '../../interface/interface';
 export class ProjectsComponent implements OnInit {
   bords$: Observable<Array<Board>>;
 
-  constructor(private api: ApiKanbanRestService) {}
+  constructor(private projects : ProjectsService) {}
 
   ngOnInit(): void {
-    this.bords$ = this.api.bordsGet() as Observable<Array<Board>>;
+    this.bords$ = this.projects.bords$;
   }
 }
