@@ -15,26 +15,28 @@ import { AuthEffects } from './auth/store/effects/auth.effects';
 import { HeaderComponent } from './core/pages/header/header.component';
 import {MatToolbarModule} from "@angular/material/toolbar";
 import { MatMenuModule } from '@angular/material/menu';
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    SharedModule,
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-    }),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-    EffectsModule.forRoot([AuthEffects]),
-    BrowserAnimationsModule,
-    AuthModule,
-    MatToolbarModule,
-    MatMenuModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SharedModule,
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+        }),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        EffectsModule.forRoot([AuthEffects]),
+        BrowserAnimationsModule,
+        AuthModule,
+        MatToolbarModule,
+        MatMenuModule,
+        MatSlideToggleModule,
+    ],
   providers: [],
   bootstrap: [AppComponent],
 })

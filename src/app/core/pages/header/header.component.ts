@@ -12,6 +12,8 @@ import { AuthActions } from '../../../auth/store/actions/auth.action-types';
 })
 export class HeaderComponent implements OnInit {
 
+  language: boolean;
+
   isLogged$: Observable<boolean>;
 
   user$: Observable<User | undefined>;
