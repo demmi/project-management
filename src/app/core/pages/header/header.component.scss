@@ -1,0 +1,32 @@
+header {
+  position: sticky;
+  top: 0;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.user-greeting{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  p {
+    margin: 0;
+  }
+
+  button {
+    font-size: 24px;
+  }
+}
+
+.login-links{
+  display: flex;
+  gap: 10px;
+}
+
+.labelForSlide {
+  margin-right: 0.5rem;
+  margin-left: 0.5rem;
+}
