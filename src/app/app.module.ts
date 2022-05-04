@@ -13,6 +13,7 @@ import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
 import { AuthEffects } from './auth/store/effects/auth.effects';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProjectManagementModule } from './project-management/project-management.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
     EffectsModule.forRoot([AuthEffects]),
     BrowserAnimationsModule,
     AuthModule,
+    ProjectManagementModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

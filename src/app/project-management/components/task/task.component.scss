@@ -1,0 +1,11 @@
+mat-card {
+  background-color: #B0C4DE;
+
+  &:hover {
+    cursor: pointer;
+  }
+
+  mat-card-title {
+    font-size: 20px;
+  }
+}
