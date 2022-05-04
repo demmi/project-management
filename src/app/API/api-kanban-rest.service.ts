@@ -12,8 +12,8 @@ import {
   providedIn: 'root',
 })
 export class ApiKanbanRestService {
-  backendURL = 'http://localhost:4200/api/';
-  /* backendURL = 'https://api.devcore.uz/api/'; */
+  /* backendURL = 'http://localhost:4200/api/'; */
+  backendURL = 'https://api.devcore.uz/';
 
   constructor(private http: HttpClient) {}
 

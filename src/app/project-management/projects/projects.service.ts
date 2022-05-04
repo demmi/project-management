@@ -12,6 +12,4 @@ export class ProjectsService {
   constructor(private api: ApiKanbanRestService) {
     this.bords$ = this.api.bordsGet() as Observable<Array<Board>>;
   }
-
-
 }
