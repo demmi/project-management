@@ -15,6 +15,8 @@ import { AuthEffects } from './auth/store/effects/auth.effects';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenAuthInterceptor } from './API/token-auth.interceptor';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { ProjectsComponent } from './project-management/projects/projects.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -25,6 +27,8 @@ const INTERCEPTOR_PROVIDER: Provider = {
   declarations: [
     AppComponent,
     PageNotFoundComponent,
+    ProjectsComponent,
+    MainPageComponent,
   ],
   imports: [
     BrowserModule,

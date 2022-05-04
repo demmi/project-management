@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+mat-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 300px;
+  min-height: 220px;
+  margin: 5px;
+  padding: 25px;
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
