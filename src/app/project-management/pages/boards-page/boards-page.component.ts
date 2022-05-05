@@ -9,11 +9,11 @@ import { BoardsService } from '../../boards.service';
   styleUrls: ['./boards-page.component.scss'],
 })
 export class BoardsPageComponent implements OnInit {
-  bords$: Observable<Array<Board>>;
+  boards$: Observable<Array<Board>>;
 
   constructor(private boards : BoardsService) {}
 
   ngOnInit(): void {
-    this.bords$ = this.boards.bords$;
+    this.boards$ = this.boards.boards$;
   }
 }

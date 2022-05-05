@@ -39,23 +39,23 @@ export class ApiKanbanRestService {
   }
 
   //Boards
-  bordsGet() {
+  boardsGet() {
     return this.http.get(this.backendURL + 'boards');
   }
 
-  bordsPost(param: Board) {
+  boardsPost(param: Board) {
     return this.http.post(this.backendURL + 'boards', param);
   }
 
-  bordGet(id: string) {
+  boardGet(id: string) {
     return this.http.get(this.backendURL + 'boards/' + id);
   }
 
-  bordDelete(id: string) {
+  boardDelete(id: string) {
     return this.http.delete(this.backendURL + 'boards/' + id);
   }
 
-  bordPut(id: string, param: Board) {
+  boardPut(id: string, param: Board) {
     return this.http.put(this.backendURL + 'boards/' + id, param);
   }
 

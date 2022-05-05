@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ApiKanbanRestService } from '../API/api-kanban-rest.service';
 import { Board } from '../interface/interface';
@@ -7,9 +8,15 @@ import { Board } from '../interface/interface';
   providedIn: 'root',
 })
 export class BoardsService {
-  bords$: Observable<Array<Board>>;
+  boards$: Observable<Array<Board>>;
 
-  constructor(private api: ApiKanbanRestService) {
-    this.bords$ = this.api.bordsGet() as Observable<Array<Board>>;
+  token: string | undefined;
+
+  constructor(private api: ApiKanbanRestService, private store: Store<any>) {
+    this.boards$ = this.api.boardsGet() as Observable<Array<Board>>;
+  }
+
+  newBoard(title: string) {
+    return this.api.boardsPost({ title: title });
   }
 }
