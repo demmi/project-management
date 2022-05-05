@@ -2,6 +2,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 64px;
 
   mat-nav-list {
     display: flex;
@@ -11,8 +12,11 @@ footer {
   }
 }
 
-p {
+span {
   font-size: 24px;
+  font-weight: 500;
+  width: 150px;
+  margin: 0 0 0 10px;
 }
 
 .link {
