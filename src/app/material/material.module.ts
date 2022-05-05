@@ -10,6 +10,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -23,6 +24,7 @@ const MaterialComponents = [
   MatListModule,
   MatToolbarModule,
   MatSlideToggleModule,
+  MatSelectModule,
 ];
 
 @NgModule({

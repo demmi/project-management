@@ -3,9 +3,10 @@
     <button mat-raised-button *ngIf="isLogged$ | async">Create new board</button>
     <span class="spacer"></span>
     <div>
-      <mat-label class="labelForSlide">En</mat-label>
-      <mat-slide-toggle [(ngModel)]="language"></mat-slide-toggle>
-      <mat-label class="labelForSlide">Ru</mat-label>
+      <mat-select>
+        <mat-option><a class="dropdown-item" (click)="changeSiteLanguage('en')">English</a></mat-option>
+        <mat-option><a class="dropdown-item" (click)="changeSiteLanguage('ru')">Русский</a></mat-option>
+      </mat-select>
     </div>
     <span class="spacer"></span>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">

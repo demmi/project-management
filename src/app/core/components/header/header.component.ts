@@ -4,6 +4,7 @@ import { map, Observable } from 'rxjs';
 import { User } from '../../../auth/model/user.interface';
 import { AuthSelectors } from '../../../auth/store/selectors/auth.selector-types';
 import { AuthActions } from '../../../auth/store/actions/auth.action-types';
+import { TranslocoService } from '@ngneat/transloco';
 
 @Component({
   selector: 'app-header',
@@ -12,14 +13,22 @@ import { AuthActions } from '../../../auth/store/actions/auth.action-types';
 })
 export class HeaderComponent implements OnInit {
 
-  language: boolean;
+  siteLanguage: string | undefined = 'English';
+
+  languageList = [
+    { code: 'en', label: 'English' },
+    { code: 'ru', label: 'Русский' },
+  ];
 
   isLogged$: Observable<boolean>;
 
   user$: Observable<User | undefined>;
 
-  constructor(private store: Store) {
+  constructor(private store: Store, private service: TranslocoService) {  }
 
+  changeSiteLanguage(language: string): void {
+    this.service.setActiveLang(language);
+    this.siteLanguage = this.languageList.find(f => f.code === language)?.label;
   }
 
   ngOnInit(): void {
