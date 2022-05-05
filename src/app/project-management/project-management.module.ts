@@ -1,12 +1,22 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 import { ProjectManagementRoutingModule } from './project-management-routing.module';
+import { BoardComponent } from './components/board/board.component';
+import { ColumnComponent } from './components/column/column.component';
+import { TaskComponent } from './components/task/task.component';
+import { BoardPageComponent } from './pages/board-page/board-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    BoardComponent,
+    ColumnComponent,
+    TaskComponent,
+    BoardPageComponent,
+  ],
   imports: [
     SharedModule,
     ProjectManagementRoutingModule,
   ],
+  exports: [BoardPageComponent],
 })
 export class ProjectManagementModule { }

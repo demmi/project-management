@@ -1,0 +1,32 @@
+@import 'src/styles/mixins';
+
+.column-container {
+  width: 350px;
+  height: 100%;
+
+  .column {
+    height: 100%;
+
+    .column-header {
+      display: flex;
+      justify-content: space-between;
+
+      mat-card-title {
+        display: flex;
+        align-items: center;
+      }
+
+      mat-icon {
+        margin-bottom: 8px;
+      }
+    }
+  }
+
+  mat-card-content {
+    min-height: 800px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: 5px;
+  }
+}

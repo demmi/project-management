@@ -1,0 +1,42 @@
+@import 'src/styles/mixins';
+
+main {
+  height: 100%;
+  background-color: #303F9F;
+
+  .title-wrapper {
+    height: 5%;
+    display: flex;
+    align-items: center;
+    padding: 10px 0 0 10px;
+
+    mat-card {
+      @include flex-layout();
+      padding: 0 20px;
+      height: 100%;
+    }
+  }
+
+  .columns-container {
+    height: 95%;
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    overflow-x: auto;
+
+    mat-card {
+      height: 100px;
+      width: 350px;
+      min-width: 350px;
+      @include flex-layout();
+      font-size: 20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+
+
