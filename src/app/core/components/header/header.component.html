@@ -1,13 +1,16 @@
 <header>
   <mat-toolbar color="primary">
-    <button mat-raised-button *ngIf="isLogged$ | async">Create new board</button>
-    <span class="spacer"></span>
-    <div>
-      <mat-label class="labelForSlide">En</mat-label>
+    <div class="rout-container">
+      <button mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Main</button>
+      <button mat-button routerLink="/boards" routerLinkActive="active">Boards</button>
+    </div>
+    <div class="toggle-container">
       <mat-slide-toggle [(ngModel)]="language"></mat-slide-toggle>
-      <mat-label class="labelForSlide">Ru</mat-label>
+      <mat-label class="labelForSlide" *ngIf="language">Eng</mat-label>
+      <mat-label class="labelForSlide" *ngIf="!language">Rus</mat-label>
     </div>
     <span class="spacer"></span>
+    <button class="create" mat-raised-button *ngIf="isLogged$ | async">New board</button>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">
       <p *ngIf="user$ | async as user">Hi {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>

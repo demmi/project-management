@@ -30,3 +30,12 @@ header {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
 }
+
+.toggle-container,
+.create {
+  margin-right: 10px;
+}
+
+.active {
+  background-color: #00000050;
+}
