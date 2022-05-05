@@ -2,6 +2,13 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  mat-nav-list {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+  }
 }
 
 p {
