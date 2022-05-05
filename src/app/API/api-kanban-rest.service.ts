@@ -50,7 +50,7 @@ export class ApiKanbanRestService {
   }
 
   bordPost(param: Board) {
-    return this.http.post(this.backendURL + 'boards/', param);
+    return this.http.post(this.backendURL + 'boards', param);
   }
 
   bordGet(id: string) {

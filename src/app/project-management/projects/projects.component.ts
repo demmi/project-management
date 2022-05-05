@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
+import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
 import { Board } from '../../interface/interface';
 import { ProjectsService } from './projects.service';
 
@@ -11,9 +12,19 @@ import { ProjectsService } from './projects.service';
 export class ProjectsComponent implements OnInit {
   bords$: Observable<Array<Board>>;
 
-  constructor(private projects : ProjectsService) {}
+  constructor(
+    private projects: ProjectsService,
+    private api: ApiKanbanRestService,
+  ) {}
 
   ngOnInit(): void {
-    this.bords$ = this.projects.bords$;
+    this.api
+      .authPost({
+        login: 'user001',
+        password: 'userpass@123',
+      })
+      .subscribe(console.log);
+    this.projects.bords$.subscribe(console.log);
+    this.api.bordsGet().subscribe(console.log);
   }
 }
