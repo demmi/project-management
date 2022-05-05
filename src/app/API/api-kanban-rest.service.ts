@@ -8,6 +8,7 @@ import { Auth, Board, Column, Registration, Task } from '../interface/interface'
 export class ApiKanbanRestService {
   backendURL = 'https://api.devcore.uz/';
 
+
   constructor(private http: HttpClient) {}
 
   //Authorization
