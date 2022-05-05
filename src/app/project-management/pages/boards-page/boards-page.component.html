@@ -1,0 +1,13 @@
+<div class="container">
+  <mat-card
+    *ngFor="let bord of bords$ | async; index as i"
+    [ngClass]="(i + 1) % 2 === 0 ? 'grey' : 'white'"
+  >
+    <mat-card-title>{{ i + 1 }}. {{ bord.title }}</mat-card-title>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [routerLink]="[bord.id]">
+        Go to Bord
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</div>

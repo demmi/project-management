@@ -5,6 +5,7 @@ import { BoardComponent } from './components/board/board.component';
 import { ColumnComponent } from './components/column/column.component';
 import { TaskComponent } from './components/task/task.component';
 import { BoardPageComponent } from './pages/board-page/board-page.component';
+import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { BoardPageComponent } from './pages/board-page/board-page.component';
     ColumnComponent,
     TaskComponent,
     BoardPageComponent,
+    BoardsPageComponent,
   ],
   imports: [
     SharedModule,

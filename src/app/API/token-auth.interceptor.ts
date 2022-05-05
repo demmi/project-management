@@ -7,18 +7,16 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { selectToken } from '../auth/store/selectors/auth.selectors';
-
 @Injectable()
 export class TokenAuthInterceptor implements HttpInterceptor {
   token = '';
 
-  constructor(private store: Store) {
-    this.store.select(selectToken).subscribe((token) => {
-      if (token) {
-        this.token = token;
-      }
-    });
+  token$: Observable<any>;
+
+  constructor(private store: Store<any>) {
+    this.store
+      .select((state) => state.auth.token)
+      .subscribe((token) => (this.token = token));
   }
 
   intercept(
