@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 @Injectable()
 export class TokenAuthInterceptor implements HttpInterceptor {
-  token = '';
+  token: string | undefined;
 
   token$: Observable<any>;
 
@@ -23,12 +23,14 @@ export class TokenAuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    if (this.token.trim().length > 0) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${this.token}`,
-        },
-      });
+    if (this.token) {
+      if (this.token.trim().length > 0) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${this.token}`,
+          },
+        });
+      }
     }
     return next.handle(request);
   }
