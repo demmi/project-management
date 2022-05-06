@@ -5,6 +5,11 @@ import { ConfirmationModal } from '../../../core/components/confirmation modal/c
 import { Board } from '../../../interface/interface';
 import { BoardsService } from '../../boards.service';
 
+interface Options {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-boards-page',
   templateUrl: './boards-page.component.html',
@@ -12,6 +17,17 @@ import { BoardsService } from '../../boards.service';
 })
 export class BoardsPageComponent implements OnInit {
   boards$: Observable<Array<Board>>;
+
+  valueSearch = '';
+
+  selectedValue: string = 'title';
+
+  options: Options[] = [
+    { value: 'title', viewValue: 'Task title' },
+    { value: 'order', viewValue: 'Task order' },
+    { value: 'description', viewValue: 'Task description' },
+    { value: 'users', viewValue: 'Users' },
+  ];
 
   constructor(private boards: BoardsService, public dialog: MatDialog) {}
 
