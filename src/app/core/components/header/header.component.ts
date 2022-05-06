@@ -5,7 +5,7 @@ import { User } from '../../../auth/model/user.interface';
 import { AuthSelectors } from '../../../auth/store/selectors/auth.selector-types';
 import { AuthActions } from '../../../auth/store/actions/auth.action-types';
 import { Router } from '@angular/router';
-import { BoardsService } from '../../../project-management/boards.service';
+import { BoardsService } from '../../../project-management/services/boards.service';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 export interface DialogData {

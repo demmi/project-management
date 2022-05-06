@@ -40,7 +40,7 @@ export class ApiKanbanRestService {
 
   //Boards
   boardsGet() {
-    return this.http.get(this.backendURL + 'boards');
+    return this.http.get<Board[]>(this.backendURL + 'boards');
   }
 
   boardsPost(param: Board) {
@@ -60,24 +60,24 @@ export class ApiKanbanRestService {
   }
 
   //Columns
-  columsGet(boardId: string) {
-    return this.http.get(this.backendURL + 'boards/' + boardId + '/colums');
+  columnsGet(boardId: string) {
+    return this.http.get<Column[]>(this.backendURL + 'boards/' + boardId + '/colums');
   }
 
-  columsPost(boardId: string, param: Column) {
+  columnsPost(boardId: string, param: Column) {
     return this.http.post(this.backendURL + 'boards/' + boardId + '/colums', param);
   }
 
-  columGet(boardId: string, columId: string) {
-    return this.http.get(this.backendURL + 'boards/' + boardId + '/colums/' + columId);
+  columGet(boardId: string, columnId: string) {
+    return this.http.get<Column>(this.backendURL + 'boards/' + boardId + '/colums/' + columnId);
   }
 
-  columDelete(boardId: string, columId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columId);
+  columnDelete(boardId: string, columnId: string) {
+    return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columnId);
   }
 
-  columPut(boardId: string, columId: string, param: Column) {
-    return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columId, param);
+  columnPut(boardId: string, columnId: string, param: Column) {
+    return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columnId, param);
   }
 
   //Tasks

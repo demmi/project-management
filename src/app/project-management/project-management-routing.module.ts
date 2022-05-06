@@ -8,6 +8,10 @@ import { BoardsPageComponent } from './pages/boards-page/boards-page.component';
       path: '',
       component: BoardsPageComponent,
     },
+    {
+      path: 'board/:id',
+      component: BoardsPageComponent,
+    },
   ])],
   exports: [RouterModule],
 })
