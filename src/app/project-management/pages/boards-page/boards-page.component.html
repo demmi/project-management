@@ -5,6 +5,7 @@
   >
     <mat-card-title>{{ i + 1 }}. {{ bord.title }}</mat-card-title>
     <mat-card-actions>
+      <button mat-raised-button color="warn" (click)="openDialog(bord.id)">Delete</button>
       <button mat-raised-button color="primary" [routerLink]="[bord.id]">
         Go to Board
       </button>

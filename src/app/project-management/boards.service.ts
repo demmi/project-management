@@ -13,10 +13,18 @@ export class BoardsService {
   token: string | undefined;
 
   constructor(private api: ApiKanbanRestService, private store: Store<any>) {
-    this.boards$ = this.api.boardsGet() as Observable<Array<Board>>;
+    this.boards$ = this.boardsGet();
   }
 
   newBoard(title: string) {
     return this.api.boardsPost({ title: title });
+  }
+
+  boardsGet() {
+    return this.api.boardsGet() as Observable<Array<Board>>;
+  }
+
+  boardDelete(id: string) {
+    return this.api.boardDelete(id);
   }
 }

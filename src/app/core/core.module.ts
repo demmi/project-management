@@ -5,6 +5,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
+import { ConfirmationModal } from './components/confirmation modal/confirmation-modal';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     PageNotFoundComponent,
     MainPageComponent,
     DialogNewBoard,
+    ConfirmationModal,
   ],
   imports: [
     SharedModule,
@@ -23,6 +25,7 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
     HeaderComponent,
     PageNotFoundComponent,
     DialogNewBoard,
+    ConfirmationModal,
   ],
 })
 export class CoreModule {}
