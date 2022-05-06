@@ -3,6 +3,10 @@ header {
   top: 0;
 }
 
+mat-label {
+  cursor: default;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -29,4 +33,17 @@ header {
 .labelForSlide {
   margin-right: 0.5rem;
   margin-left: 0.5rem;
+}
+
+.toggle-container,
+.create {
+  margin: 0 10px;
+}
+
+.active {
+  background-color: #00000050;
+}
+
+.user-title {
+  cursor: default;
 }

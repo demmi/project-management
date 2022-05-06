@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Auth, BoardChange, ColumnChange, Registration, TaskCreate, TaskUpdate } from '../interface/interface';
+import { Auth, Board, Column, Registration, Task } from '../interface/interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiKanbanRestService {
+  /* backendURL = 'https://api.devcore.uz/'; */
   backendURL = 'http://localhost:4200/api/';
-  /* backendURL = 'https://api.devcore.uz/api/'; */
 
   constructor(private http: HttpClient) {}
 
@@ -43,8 +43,8 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards');
   }
 
-  bordsPost(param: BoardChange) {
-    return this.http.post(this.backendURL + 'boards/', param);
+  bordsPost(param: Board) {
+    return this.http.post(this.backendURL + 'boards', param);
   }
 
   bordGet(id: string) {
@@ -55,7 +55,7 @@ export class ApiKanbanRestService {
     return this.http.delete(this.backendURL + 'boards/' + id);
   }
 
-  bordPut(id: string, param: BoardChange) {
+  bordPut(id: string, param: Board) {
     return this.http.put(this.backendURL + 'boards/' + id, param);
   }
 
@@ -64,7 +64,7 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + boardId + '/colums');
   }
 
-  columsPost(boardId: string, param: ColumnChange) {
+  columsPost(boardId: string, param: Column) {
     return this.http.post(this.backendURL + 'boards/' + boardId + '/colums', param);
   }
 
@@ -76,7 +76,7 @@ export class ApiKanbanRestService {
     return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columId);
   }
 
-  columPut(boardId: string, columId: string, param: ColumnChange) {
+  columPut(boardId: string, columId: string, param: Column) {
     return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columId, param);
   }
 
@@ -85,7 +85,7 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks');
   }
 
-  tasksPost(boardId: string, columId: string, param: TaskCreate) {
+  tasksPost(boardId: string, columId: string, param: Task) {
     return this.http.post(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks', param);
   }
 
@@ -97,7 +97,7 @@ export class ApiKanbanRestService {
     return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks/' + taskId);
   }
 
-  taskPut(boardId: string, columId: string, taskId: string, param: TaskUpdate) {
+  taskPut(boardId: string, columId: string, taskId: string, param: Task) {
     return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks/' + taskId, param);
   }
 
