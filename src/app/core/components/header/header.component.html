@@ -10,7 +10,7 @@
       <mat-label class="labelForSlide" *ngIf="!language">Rus</mat-label>
     </div>
     <span class="spacer"></span>
-    <button class="create" mat-raised-button *ngIf="isLogged$ | async">New board</button>
+    <button class="create" mat-raised-button *ngIf="router.url.includes('boards')" (click)="newBoardDialog()">New board</button>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">
       <p *ngIf="user$ | async as user" class="user-title">Hi {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>
