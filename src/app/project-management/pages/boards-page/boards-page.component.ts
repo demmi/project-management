@@ -23,7 +23,7 @@ export class BoardsPageComponent implements OnInit {
     const dialogRef = this.dialog.open(ConfirmationModal);
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      if (result && id.length > 0) {
         this.boards.boardDelete(id).subscribe();
       }
     });
