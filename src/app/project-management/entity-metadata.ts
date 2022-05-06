@@ -1,8 +1,20 @@
 import { EntityMetadataMap } from '@ngrx/data';
 
 export const entityMetadata: EntityMetadataMap = {
-  Board: {},
-  Column: {},
-  Task: {},
+  Board: {
+    entityDispatcherOptions: {
+      optimisticUpdate: true,
+    },
+  },
+  Column: {
+    entityDispatcherOptions: {
+      optimisticUpdate: true,
+    },
+  },
+  Task: {
+    entityDispatcherOptions: {
+      optimisticUpdate: true,
+    },
+  },
 };
 
