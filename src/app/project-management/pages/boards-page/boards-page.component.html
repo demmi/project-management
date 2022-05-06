@@ -1,11 +1,39 @@
 <div class="container">
+  <mat-toolbar color="primary">
+    <mat-form-field class="options">
+      <mat-label>Options</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="option">
+        <mat-option
+          value="title"
+          *ngFor="let option of options"
+          [value]="option.value"
+          >{{ option.viewValue }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="search">
+      <mat-label>Search boards...</mat-label>
+      <input matInput type="text" [(ngModel)]="valueSearch" />
+      <button
+        *ngIf="valueSearch"
+        matSuffix
+        mat-icon-button
+        aria-label="Clear"
+        (click)="valueSearch = ''"
+      >
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-toolbar>
   <mat-card
     *ngFor="let bord of boards$ | async; index as i"
     [ngClass]="(i + 1) % 2 === 0 ? 'grey' : 'white'"
   >
     <mat-card-title>{{ i + 1 }}. {{ bord.title }}</mat-card-title>
     <mat-card-actions>
-      <button mat-raised-button color="warn" (click)="openDialog(bord.id)">Delete</button>
+      <button mat-raised-button color="warn" (click)="openDialog(bord.id)">
+        Delete
+      </button>
       <button mat-raised-button color="primary" [routerLink]="[bord.id]">
         Go to Board
       </button>
