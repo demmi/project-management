@@ -1,24 +1,25 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Auth, Board, Column, Registration, Task } from '../interface/interface';
+import { Board, Column, Task } from '../interface/interface';
 import { map, Observable } from 'rxjs';
+import { User } from '../auth/model/user.interface';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiKanbanRestService {
-  /* backendURL = 'https://api.devcore.uz/'; */
-  backendURL = 'http://localhost:4200/api/';
+
+  backendURL = 'https://rss-pm.herokuapp.com/';
 
   constructor(private http: HttpClient) {}
 
   //Authorization
-  registPost(param: Registration) {
-    return this.http.post(this.backendURL + 'signup', param);
+  registPost(param: User): Observable<User> {
+    return this.http.post<User>(this.backendURL + 'signup', param);
   }
 
-  authPost(param: Auth) {
-    return this.http.post(this.backendURL + 'signin', param);
+  authPost(param: User): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(this.backendURL + 'signin', param);
   }
 
   //Users
