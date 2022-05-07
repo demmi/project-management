@@ -11,6 +11,7 @@ import { entityMetadata } from './entity-metadata';
 import { BoardsDataService } from './services/boards-data.service';
 import { ColumnsDataService } from './services/columns-data.service';
 import { TasksDataService } from './services/tasks-data.service';
+import { BoardCardComponent } from './components/board-card/board-card.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { TasksDataService } from './services/tasks-data.service';
     TaskComponent,
     BoardPageComponent,
     BoardsPageComponent,
+    BoardCardComponent,
   ],
   imports: [
     SharedModule,
