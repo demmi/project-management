@@ -24,4 +24,8 @@ export class BoardsDataService extends DefaultDataService<Board> {
     return this.api.boardsPost(board);
   }
 
+  override delete(key: string): Observable<number | string> {
+    return this.api.boardDelete(key);
+  }
+
 }

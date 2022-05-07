@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { Board } from '../../../interface/interface';
+import { Board, ConfirmDialogData } from '../../../interface/interface';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationModalComponent } from '../../../core/components/confirmation modal/confirmation-modal.component';
+import { ConfirmationModalComponent } from '../../../core/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-board-card',
@@ -17,7 +17,15 @@ export class BoardCardComponent {
   constructor(private dialog: MatDialog) { }
 
   openDialog(): void {
-    this.dialog.open(ConfirmationModalComponent);
+    this.dialog.open<ConfirmationModalComponent, ConfirmDialogData>(
+      ConfirmationModalComponent,
+      {
+        data: {
+          entityType: 'board',
+          entity: this.board,
+        },
+      },
+    );
   }
 
 }

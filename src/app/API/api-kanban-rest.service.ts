@@ -52,8 +52,8 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + id);
   }
 
-  boardDelete(id: string) {
-    return this.http.delete(this.backendURL + 'boards/' + id);
+  boardDelete(id: string): Observable<number | string> {
+    return this.http.delete<number | string>(this.backendURL + 'boards/' + id);
   }
 
   boardPut(id: string, param: Board) {
