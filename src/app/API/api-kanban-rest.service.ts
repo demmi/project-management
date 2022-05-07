@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, Board, Column, Registration, Task } from '../interface/interface';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -39,12 +40,12 @@ export class ApiKanbanRestService {
   }
 
   //Boards
-  boardsGet() {
+  boardsGet(): Observable<Board[]> {
     return this.http.get<Board[]>(this.backendURL + 'boards');
   }
 
-  boardsPost(param: Board) {
-    return this.http.post(this.backendURL + 'boards', param);
+  boardsPost(param: Board): Observable<Board> {
+    return this.http.post<Board>(this.backendURL + 'boards', param);
   }
 
   boardGet(id: string) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { ConfirmationModal } from '../../../core/components/confirmation modal/confirmation-modal';
+import { ConfirmationModalComponent } from '../../../core/components/confirmation modal/confirmation-modal.component';
 import { Board } from '../../../interface/interface';
 import { BoardEntityService } from '../../services/board-entity.service';
 
@@ -37,7 +37,7 @@ export class BoardsPageComponent implements OnInit {
   }
 
   openDialog(id: string = '') {
-    const dialogRef = this.dialog.open(ConfirmationModal);
+    const dialogRef = this.dialog.open(ConfirmationModalComponent);
     console.log(id);
     dialogRef.afterClosed().subscribe();
   }

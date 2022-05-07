@@ -20,4 +20,8 @@ export class BoardsDataService extends DefaultDataService<Board> {
     return this.api.boardsGet();
   }
 
+  override add(board: Board): Observable<Board> {
+    return this.api.boardsPost(board);
+  }
+
 }
