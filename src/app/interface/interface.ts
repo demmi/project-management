@@ -35,3 +35,8 @@ export interface ConfirmDialogData {
   entityType: 'board' | 'column' | 'task';
   entity: Board | Column | Task;
 }
+
+export interface AddColumnDialogData {
+  boardId: string;
+  order: number;
+}

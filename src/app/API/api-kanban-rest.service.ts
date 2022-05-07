@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Auth, Board, Column, Registration, Task } from '../interface/interface';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -61,45 +61,57 @@ export class ApiKanbanRestService {
   }
 
   //Columns
-  columnsGet(boardId: string) {
-    return this.http.get<Column[]>(this.backendURL + 'boards/' + boardId + '/colums');
+  columnsGet(boardId: string): Observable<Column[]> {
+    return this.http.get<Column[]>(this.backendURL + 'boards/' + boardId + '/columns')
+      .pipe(
+        map(columns => columns.map(column => {
+          column.boardId = boardId;
+          return column;
+        })),
+      );
   }
 
-  columnsPost(boardId: string, param: Column) {
-    return this.http.post(this.backendURL + 'boards/' + boardId + '/colums', param);
+  columnsPost(boardId: string, param: Column): Observable<Column> {
+    return this.http.post<Column>(this.backendURL + 'boards/' + boardId + '/columns', param)
+      .pipe(
+        map(column => {
+          column.boardId = boardId;
+          return column;
+        }),
+      );
   }
 
   columGet(boardId: string, columnId: string) {
-    return this.http.get<Column>(this.backendURL + 'boards/' + boardId + '/colums/' + columnId);
+    return this.http.get<Column>(this.backendURL + 'boards/' + boardId + '/columns/' + columnId);
   }
 
   columnDelete(boardId: string, columnId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columnId);
+    return this.http.delete(this.backendURL + 'boards/' + boardId + '/columns/' + columnId);
   }
 
   columnPut(boardId: string, columnId: string, param: Column) {
-    return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columnId, param);
+    return this.http.put(this.backendURL + 'boards/' + boardId + '/columns/' + columnId, param);
   }
 
   //Tasks
   tasksGet(boardId: string, columId: string) {
-    return this.http.get(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks');
+    return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks');
   }
 
   tasksPost(boardId: string, columId: string, param: Task) {
-    return this.http.post(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks', param);
+    return this.http.post(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks', param);
   }
 
   taskGet(boardId: string, columId: string, taskId: string) {
-    return this.http.get(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks/' + taskId);
+    return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
   taskDelete(boardId: string, columId: string, taskId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks/' + taskId);
+    return this.http.delete(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
   taskPut(boardId: string, columId: string, taskId: string, param: Task) {
-    return this.http.put(this.backendURL + 'boards/' + boardId + '/colums/' + columId + '/tasks/' + taskId, param);
+    return this.http.put(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId, param);
   }
 
   //Upload/Download file

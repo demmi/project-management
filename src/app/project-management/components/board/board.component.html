@@ -2,13 +2,14 @@
   <div class="title-wrapper">
     <mat-card>
       <mat-card-title>
-        Board title
+        {{ (board$ | async)?.title }}
       </mat-card-title>
     </mat-card>
   </div>
   <div class="columns-container">
-    <app-column *ngFor="let column of columns"></app-column>
-    <mat-card>
+    <app-column *ngFor="let column of columns$ | async"
+                [column]="column"></app-column>
+    <mat-card (click)="openAddColumnDialog()">
       Add column +
     </mat-card>
   </div>

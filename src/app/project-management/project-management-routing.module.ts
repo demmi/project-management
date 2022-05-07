@@ -14,7 +14,7 @@ import { BoardPageComponent } from './pages/board-page/board-page.component';
       },
     },
     {
-      path: 'board/:id',
+      path: ':id',
       component: BoardPageComponent,
     },
   ])],

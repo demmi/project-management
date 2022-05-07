@@ -12,6 +12,7 @@ import { BoardsDataService } from './services/boards-data.service';
 import { ColumnsDataService } from './services/columns-data.service';
 import { TasksDataService } from './services/tasks-data.service';
 import { BoardCardComponent } from './components/board-card/board-card.component';
+import { AddColumnDialogComponent } from './components/board/add-column-dialog/add-column-dialog.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { BoardCardComponent } from './components/board-card/board-card.component
     BoardPageComponent,
     BoardsPageComponent,
     BoardCardComponent,
+    AddColumnDialogComponent,
   ],
   imports: [
     SharedModule,
