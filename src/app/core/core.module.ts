@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { FooterComponent } from './components/footer/footer.component';
-import { DialogNewBoard, HeaderComponent } from './components/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { SharedModule } from '../shared/shared.module';
 import { RouterModule } from '@angular/router';
 import { MainPageComponent } from './pages/main-page/main-page.component';
-import { ConfirmationModal } from './components/confirmation modal/confirmation-modal';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
+import { AddBoardDialogComponent } from './components/header/add-board/add-board-dialog.component';
 
 @NgModule({
   declarations: [
@@ -13,8 +14,8 @@ import { ConfirmationModal } from './components/confirmation modal/confirmation-
     HeaderComponent,
     PageNotFoundComponent,
     MainPageComponent,
-    DialogNewBoard,
-    ConfirmationModal,
+    ConfirmationModalComponent,
+    AddBoardDialogComponent,
   ],
   imports: [
     SharedModule,
@@ -24,8 +25,7 @@ import { ConfirmationModal } from './components/confirmation modal/confirmation-
     FooterComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    DialogNewBoard,
-    ConfirmationModal,
+    ConfirmationModalComponent,
   ],
 })
 export class CoreModule {}

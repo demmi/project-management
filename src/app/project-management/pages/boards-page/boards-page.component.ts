@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
-import { ConfirmationModal } from '../../../core/components/confirmation modal/confirmation-modal';
 import { Board } from '../../../interface/interface';
-import { BoardsService } from '../../boards.service';
+import { BoardEntityService } from '../../services/board-entity.service';
 
 interface Options {
   value: string;
@@ -29,19 +27,10 @@ export class BoardsPageComponent implements OnInit {
     { value: 'users', viewValue: 'Users' },
   ];
 
-  constructor(private boards: BoardsService, public dialog: MatDialog) {}
+  constructor(private boardsService: BoardEntityService) {}
 
   ngOnInit(): void {
-    this.boards$ = this.boards.boards$;
+    this.boards$ = this.boardsService.entities$;
   }
 
-  openDialog(id: string = '') {
-    const dialogRef = this.dialog.open(ConfirmationModal);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result && id.length > 0) {
-        this.boards.boardDelete(id).subscribe();
-      }
-    });
-  }
 }

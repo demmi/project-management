@@ -1,0 +1,12 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <mat-form-field appearance="fill">
+    <mat-label>Title for new board</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onClose()">Close</button>
+    <button mat-button type="submit">
+      Create
+    </button>
+  </div>
+</form>

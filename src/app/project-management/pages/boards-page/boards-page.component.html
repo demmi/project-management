@@ -4,7 +4,6 @@
       <mat-label>Options</mat-label>
       <mat-select [(ngModel)]="selectedValue" name="option">
         <mat-option
-          value="title"
           *ngFor="let option of options"
           [value]="option.value"
           >{{ option.viewValue }}</mat-option
@@ -25,18 +24,8 @@
       </button>
     </mat-form-field>
   </mat-toolbar>
-  <mat-card
-    *ngFor="let bord of boards$ | async; index as i"
-    [ngClass]="(i + 1) % 2 === 0 ? 'grey' : 'white'"
-  >
-    <mat-card-title>{{ i + 1 }}. {{ bord.title }}</mat-card-title>
-    <mat-card-actions>
-      <button mat-raised-button color="warn" (click)="openDialog(bord.id)">
-        Delete
-      </button>
-      <button mat-raised-button color="primary" [routerLink]="[bord.id]">
-        Go to Board
-      </button>
-    </mat-card-actions>
-  </mat-card>
+  <app-board-card
+    *ngFor="let board of boards$ | async; index as i"
+    [board]="board"
+    [index]="i"></app-board-card>
 </div>

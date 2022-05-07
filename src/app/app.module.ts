@@ -16,6 +16,7 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenAuthInterceptor } from './API/token-auth.interceptor';
 import { ProjectManagementModule } from './project-management/project-management.module';
 import { CoreModule } from './core/core.module';
+import { EntityDataModule } from '@ngrx/data';
 
 const INTERCEPTOR_PROVIDER: Provider = {
   provide: HTTP_INTERCEPTORS,
@@ -30,15 +31,16 @@ const INTERCEPTOR_PROVIDER: Provider = {
     BrowserModule,
     AppRoutingModule,
     SharedModule,
+    AuthModule,
+    BrowserAnimationsModule,
+    ProjectManagementModule,
+    CoreModule,
     StoreModule.forRoot(reducers, {
       metaReducers,
     }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([AuthEffects]),
-    BrowserAnimationsModule,
-    AuthModule,
-    ProjectManagementModule,
-    CoreModule,
+    EntityDataModule.forRoot({}),
   ],
   providers: [INTERCEPTOR_PROVIDER],
   bootstrap: [AppComponent],

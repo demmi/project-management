@@ -1,0 +1,18 @@
+mat-card {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 700px;
+  min-height: 70px;
+  margin: 15px 5px 5px 0;
+
+  &.grey {
+    background-color: #94949438;
+  }
+
+  mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+  }
+}
