@@ -29,7 +29,9 @@ export class BoardsPageComponent implements OnInit {
     { value: 'users', viewValue: 'Users' },
   ];
 
-  constructor(private boards: BoardsService, public dialog: MatDialog) {}
+  constructor(private boards: BoardsService, public dialog: MatDialog) {
+    this.boards.getToken();
+  }
 
   ngOnInit(): void {
     this.boards$ = this.boards.boards$;

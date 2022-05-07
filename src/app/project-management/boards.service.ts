@@ -27,4 +27,13 @@ export class BoardsService {
   boardDelete(id: string) {
     return this.api.boardDelete(id);
   }
+
+  getToken() {
+    return this.api
+      .authPost({
+        login: 'user001',
+        password: 'userpass@123',
+      })
+      .subscribe(console.log);
+  }
 }

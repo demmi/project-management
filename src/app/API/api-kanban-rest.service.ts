@@ -6,8 +6,7 @@ import { Auth, Board, Column, Registration, Task } from '../interface/interface'
   providedIn: 'root',
 })
 export class ApiKanbanRestService {
-  /* backendURL = 'https://api.devcore.uz/'; */
-  backendURL = 'http://localhost:4200/api/';
+  backendURL = 'https://rss-pm.herokuapp.com/';
 
   constructor(private http: HttpClient) {}
 
