@@ -4,5 +4,7 @@
   "logout": "Logout",
   "signup": "Sign Up",
   "newBoard": "Create new board",
-  "editProfile": "Edit profile"
+  "editProfile": "Edit profile",
+  "mainPage": "Main",
+  "boardPage": "Boars"
 }
