@@ -19,6 +19,8 @@ export class LoginComponent implements OnDestroy {
 
   loginSub: Subscription;
 
+  showSpinner: boolean = false;
+
   constructor(
     private store: Store,
     private fb: FormBuilder,
@@ -42,10 +44,13 @@ export class LoginComponent implements OnDestroy {
 
   submit(): void {
     if (this.form.valid) {
+      this.showSpinner = true;
       const user: User = { ...this.form.value };
       this.loginSub = this.authService.login(user)
         .subscribe(
-          (response) => this.store.dispatch(AuthActions.login({ user, token: response.token })));
+          (response) => this.store.dispatch(AuthActions.login({ user, token: response.token })),
+          () => this.showSpinner = false,
+        );
     }
   }
 
