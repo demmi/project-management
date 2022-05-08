@@ -74,6 +74,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.orderSub.unsubscribe();
+    if (this.orderSub) {
+      this.orderSub.unsubscribe();
+    }
   }
 }
