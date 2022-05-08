@@ -1,26 +1,26 @@
-<header>
+<header *transloco="let t">
   <mat-toolbar color="primary">
-    <button mat-raised-button *ngIf="isLogged$ | async">Create new board</button>
+    <button mat-raised-button *ngIf="isLogged$ | async">{{t ('newBoard')}}</button>
     <span class="spacer"></span>
     <div>
-      <mat-select>
-        <mat-option><a class="dropdown-item" (click)="changeSiteLanguage('en')">English</a></mat-option>
-        <mat-option><a class="dropdown-item" (click)="changeSiteLanguage('ru')">Русский</a></mat-option>
+      <mat-select [(value)]="siteLanguage" (selectionChange)="changeSiteLanguage(siteLanguage)">
+        <mat-option value="en">English</mat-option>
+        <mat-option value="ru">Русский</mat-option>
       </mat-select>
     </div>
     <span class="spacer"></span>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">
-      <p *ngIf="user$ | async as user">Hi {{user.login}}</p>
+      <p *ngIf="user$ | async as user">{{t ('greeting')}} {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>
       <mat-menu #userMenu='matMenu'>
-        <a mat-menu-item routerLink="#">Edit profile</a>
-        <button mat-menu-item (click)="LogOut()">Logout</button>
+        <a mat-menu-item routerLink="#">{{t('editProfile')}}</a>
+        <button mat-menu-item (click)="LogOut()">{{t('logout')}}</button>
       </mat-menu>
     </div>
     <ng-template #login>
       <div class="login-links">
-        <a mat-raised-button routerLink="/login">Login</a>
-        <a mat-raised-button routerLink="/signup">Sign Up</a>
+        <a mat-raised-button routerLink="/login">{{t ('login')}}</a>
+        <a mat-raised-button routerLink="/signup">{{t ('signup')}}</a>
       </div>
     </ng-template>
   </mat-toolbar>

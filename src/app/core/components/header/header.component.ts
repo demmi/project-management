@@ -13,12 +13,7 @@ import { TranslocoService } from '@ngneat/transloco';
 })
 export class HeaderComponent implements OnInit {
 
-  siteLanguage: string | undefined = 'English';
-
-  languageList = [
-    { code: 'en', label: 'English' },
-    { code: 'ru', label: 'Русский' },
-  ];
+  siteLanguage: string = 'en';
 
   isLogged$: Observable<boolean>;
 
@@ -28,7 +23,6 @@ export class HeaderComponent implements OnInit {
 
   changeSiteLanguage(language: string): void {
     this.service.setActiveLang(language);
-    this.siteLanguage = this.languageList.find(f => f.code === language)?.label;
   }
 
   ngOnInit(): void {

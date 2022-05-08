@@ -1,1 +1,8 @@
-{}
+{
+  "greeting": "Hi",
+  "login": "Login",
+  "logout": "Logout",
+  "signup": "Sign Up",
+  "newBoard": "Create new board",
+  "editProfile": "Edit profile"
+}
