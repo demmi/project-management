@@ -11,7 +11,7 @@ mat-label {
   flex: 1 1 auto;
 }
 
-.user-greeting{
+.user-greeting {
   display: flex;
   align-items: center;
   gap: 10px;
@@ -25,14 +25,9 @@ mat-label {
   }
 }
 
-.login-links{
+.login-links {
   display: flex;
   gap: 10px;
-}
-
-.labelForSlide {
-  margin-right: 0.5rem;
-  margin-left: 0.5rem;
 }
 
 .toggle-container,
