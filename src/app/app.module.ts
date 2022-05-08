@@ -17,12 +17,21 @@ import { TokenAuthInterceptor } from './API/token-auth.interceptor';
 import { ProjectManagementModule } from './project-management/project-management.module';
 import { CoreModule } from './core/core.module';
 import { TranslocoRootModule } from './transloco-root.module';
+import { EntityDataModule } from '@ngrx/data';
+import { HttpErrorsInterceptor } from './API/http-errors-interceptor.service';
 
-const INTERCEPTOR_PROVIDER: Provider = {
-  provide: HTTP_INTERCEPTORS,
-  useClass: TokenAuthInterceptor,
-  multi: true,
-};
+const INTERCEPTOR_PROVIDERS: Provider[] = [
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenAuthInterceptor,
+    multi: true,
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorsInterceptor,
+    multi: true,
+  },
+];
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,8 +51,9 @@ const INTERCEPTOR_PROVIDER: Provider = {
     CoreModule,
     HttpClientModule,
     TranslocoRootModule,
+    EntityDataModule.forRoot({}),
   ],
-  providers: [INTERCEPTOR_PROVIDER],
+  providers: [INTERCEPTOR_PROVIDERS],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

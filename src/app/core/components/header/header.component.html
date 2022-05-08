@@ -8,7 +8,12 @@
         <mat-option value="ru">Русский</mat-option>
       </mat-select>
     </div>
+    <div class="rout-container">
+      <button mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Main</button>
+      <button mat-button routerLink="/boards" routerLinkActive="active">Boards</button>
+    </div>   
     <span class="spacer"></span>
+    <button class="create" mat-raised-button *ngIf="router.url.includes('boards')" (click)="newBoardDialog()">New board</button>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">
       <p *ngIf="user$ | async as user">{{t ('greeting')}} {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>

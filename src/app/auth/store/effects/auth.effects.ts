@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { AuthActions } from '../actions/auth.action-types';
-import { concatMap, map, switchMap, tap } from 'rxjs';
+import { concatMap, map, tap, withLatestFrom } from 'rxjs';
 import { AuthService } from '../../services/auth.service';
 import { Store } from '@ngrx/store';
 import { AuthSelectors } from '../selectors/auth.selector-types';
+import { Router } from '@angular/router';
 import { User } from '../../model/user.interface';
 
 @Injectable({ providedIn: 'root' })
@@ -16,8 +17,7 @@ export class AuthEffects {
         .pipe(
           ofType(AuthActions.login),
           tap(action => localStorage.setItem('user', JSON.stringify(action.user))),
-          concatMap(action => this.authService.login(action.user)),
-          map(response => AuthActions.setToken({ token: response.token })),
+          map(action => AuthActions.setToken({ token: action.token })),
         );
     },
   );
@@ -27,7 +27,10 @@ export class AuthEffects {
       return this.actions$
         .pipe(
           ofType(AuthActions.setToken),
-          tap(action => localStorage.setItem('token', action.token)),
+          tap(action => {
+            localStorage.setItem('token', action.token);
+            this.router.navigateByUrl('/boards');
+          }),
         );
     },
     { dispatch: false },
@@ -38,9 +41,23 @@ export class AuthEffects {
       return this.actions$
         .pipe(
           ofType(AuthActions.signup),
-          concatMap(action => this.authService.signup(action.user)),
-          switchMap(() => this.store.select(AuthSelectors.selectUser)),
-          map(user => AuthActions.login({ user: user as User })),
+          concatMap(
+            action => this.authService.login(
+              {
+                login: action.user.login,
+                password: action.user.password,
+              },
+            ),
+          ),
+          withLatestFrom(this.store.select(AuthSelectors.selectUser)),
+          map(
+            ([response, user]) => AuthActions.login(
+              {
+                user: user as User,
+                token: response.token,
+              },
+            ),
+          ),
         );
     },
   );
@@ -52,6 +69,7 @@ export class AuthEffects {
         tap(() => {
           localStorage.removeItem('token');
           localStorage.removeItem('user');
+          this.router.navigateByUrl('/login');
         }),
       );
     },
@@ -62,6 +80,7 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private store: Store,
+    private router: Router,
   ) {}
 
 

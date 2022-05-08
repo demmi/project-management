@@ -3,6 +3,10 @@ header {
   top: 0;
 }
 
+mat-label {
+  cursor: default;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
@@ -24,4 +28,17 @@ header {
 .login-links {
   display: flex;
   gap: 10px;
+}
+
+.toggle-container,
+.create {
+  margin: 0 10px;
+}
+
+.active {
+  background-color: #00000050;
+}
+
+.user-title {
+  cursor: default;
 }

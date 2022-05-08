@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+mat-toolbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+
+  .options {
+    width: 130px;
+    margin-right: 15px;
+  }
+
+  .search {
+    width: 250px;
+  }
+}

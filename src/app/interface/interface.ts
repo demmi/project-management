@@ -18,6 +18,7 @@ export interface Column {
   id?: string;
   title: string;
   order: number;
+  boardId?: string;
 }
 
 export interface Task {
@@ -28,4 +29,14 @@ export interface Task {
   userId: { description: string };
   boardId?: { description: string };
   columnId?: string;
+}
+
+export interface ConfirmDialogData {
+  entityType: 'board' | 'column' | 'task';
+  entity: Board | Column | Task;
+}
+
+export interface AddColumnDialogData {
+  boardId: string;
+  order: number;
 }
