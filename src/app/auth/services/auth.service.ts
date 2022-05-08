@@ -2,30 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../model/user.interface';
+import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private api: ApiKanbanRestService,
+  ) {}
 
   login(user: User): Observable<{ token: string }> {
-    return this.http.post<{ token: string }>(
-      'http://localhost:4200/api/signin',
-      {
-        login: user.login,
-        password: user.password,
-      },
-    );
+    return this.api.authPost(user);
   }
 
   signup(user: User): Observable<User> {
-    return this.http.post<User>(
-      'http://localhost:4200/api/signup',
-      {
-        name: user.name,
-        login: user.login,
-        password: user.password,
-      });
+    return this.api.registPost(user);
   }
 
 }

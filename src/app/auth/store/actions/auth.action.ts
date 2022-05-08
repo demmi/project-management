@@ -3,7 +3,7 @@ import { User } from '../../model/user.interface';
 
 export const login = createAction(
   '[Login Page] User Login',
-  props<{ user: User }>(),
+  props<{ user: User, token: string }>(),
 );
 
 export const signup = createAction(
