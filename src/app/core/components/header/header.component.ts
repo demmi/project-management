@@ -53,6 +53,5 @@ export class HeaderComponent implements OnInit, AfterViewInit {
 
   newBoardDialog(): void {
     this.dialog.open(AddBoardDialogComponent);
-    console.log(this.router.url);
   }
 }

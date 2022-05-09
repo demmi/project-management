@@ -17,6 +17,7 @@ export class TokenAuthInterceptor implements HttpInterceptor {
   constructor(private store: Store) {
     this.store
       .select(AuthSelectors.selectToken)
+      // eslint-disable-next-line ngrx/no-store-subscription
       .subscribe((token) => (this.token = token));
   }
 
