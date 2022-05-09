@@ -1,14 +1,3 @@
-export interface Registration {
-  name: string;
-  login: string;
-  password: string;
-}
-
-export interface Auth {
-  login: string;
-  password: string;
-}
-
 export interface Board {
   id?: string;
   title: string;

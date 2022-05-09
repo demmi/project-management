@@ -24,7 +24,7 @@ export class TokenAuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    if (this.token) {
+    if (this.token && request.url.includes('https://rss-pm.herokuapp.com')) {
       if (this.token.trim().length > 0) {
         request = request.clone({
           setHeaders: {

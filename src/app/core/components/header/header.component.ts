@@ -26,13 +26,13 @@ export class HeaderComponent implements OnInit {
     private store: Store,
     public router: Router,
     public dialog: MatDialog,
-    private service: TranslocoService
+    private service: TranslocoService,
   ) {}
 
   changeSiteLanguage(language: string): void {
     this.service.setActiveLang(language);
   }
-  
+
   ngOnInit(): void {
     this.user$ = this.store.select(AuthSelectors.selectUser);
     this.isLogged$ = this.user$.pipe(map((user) => !!user));
@@ -44,5 +44,6 @@ export class HeaderComponent implements OnInit {
 
   newBoardDialog(): void {
     this.dialog.open(AddBoardDialogComponent);
+    console.log(this.router.url);
   }
 }
