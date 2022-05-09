@@ -1,10 +1,19 @@
 {
   "greeting": "Hi",
   "login": "Login",
+  "log_in": "Log In",
   "logout": "Logout",
   "signup": "Sign Up",
+  "sign_up": "Sign Up",
   "newBoard": "Create new board",
   "editProfile": "Edit profile",
   "mainPage": "Main",
-  "boardPage": "Boars"
+  "boardPage": "Boars",
+  "loginReq": "Login is required",
+  "passReq": "Password is required",
+  "nameReq": "Name is required",
+  "logIn": "Login",
+  "password": "Password",
+  "name": "Name"
+
 }
