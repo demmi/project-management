@@ -1,10 +1,9 @@
 <header *transloco="let t">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" [ngClass]="{ bottom: top$ | async }">
     <div class="rout-container">
       <button mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{t ('mainPage')}}</button>
       <button mat-button routerLink="/boards" routerLinkActive="active">{{t ('boardPage')}}</button>
     </div>
-    <span class="spacer"></span>
     <div>
       <mat-select [(value)]="siteLanguage" (selectionChange)="changeSiteLanguage(siteLanguage)">
         <mat-option value="en">English</mat-option>
