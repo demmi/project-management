@@ -2,16 +2,27 @@
   <mat-card class="column">
     <div class="column-header">
       <mat-card-title>{{ column.title }}</mat-card-title>
-      <button mat-icon-button [matMenuTriggerFor]="menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item>{{t('add_task')}}</button>
-        <button mat-menu-item>{{t('delete')}}</button>
-      </mat-menu>
+      <div class="btn-column-header">
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu" xPosition="before">
+          <button mat-menu-item>{{ t("add_task") }}</button>
+          <button mat-menu-item>{{ t("delete") }}</button>
+        </mat-menu>
+      </div>
     </div>
-    <mat-card-content>
-      <app-task *ngFor="let task of tasks"></app-task>
+    <mat-card-content
+      cdkDropList
+      [cdkDropListData]="tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <app-task
+        class="box"
+        *ngFor="let task of tasks"
+        cdkDrag
+        [task]="task"
+      ></app-task>
     </mat-card-content>
   </mat-card>
 </div>

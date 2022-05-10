@@ -4,8 +4,13 @@ import { AddColumnDialogComponent } from './add-column-dialog/add-column-dialog.
 import { ActivatedRoute } from '@angular/router';
 import { BoardEntityService } from '../../services/board-entity.service';
 import { map, Observable, Subscription, tap } from 'rxjs';
-import { Board, Column, AddColumnDialogData } from '../../../interface/interface';
+import {
+  Board,
+  Column,
+  AddColumnDialogData,
+} from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/column-entity.service';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-board',
@@ -13,7 +18,6 @@ import { ColumnEntityService } from '../../services/column-entity.service';
   styleUrls: ['./board.component.scss'],
 })
 export class BoardComponent implements OnInit, OnDestroy {
-
   board$: Observable<Board | undefined>;
 
   columns$: Observable<Column[] | undefined>;
@@ -36,41 +40,60 @@ export class BoardComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     let columnsLoaded: boolean = false;
     this.boardId = this.route.snapshot.params['id'];
-    this.board$ = this.boardsService.entities$
-      .pipe(
-        map(boards => boards.find(board => board.id === this.boardId)),
-      );
-    this.columns$ = this.columnService.entities$
-      .pipe(
-        tap(() => {
-          if (!columnsLoaded) {
-            this.columnService.getWithQuery(this.boardId);
-            columnsLoaded = true;
-          }
-        }),
-        map(columns => columns.filter(column => column.boardId === this.boardId)),
-      );
+    this.board$ = this.boardsService.entities$.pipe(
+      map((boards) => boards.find((board) => board.id === this.boardId)),
+    );
+    this.columns$ = this.columnService.entities$.pipe(
+      tap(() => {
+        if (!columnsLoaded) {
+          this.columnService.getWithQuery(this.boardId);
+          columnsLoaded = true;
+        }
+      }),
+      map((columns) =>
+        columns.filter((column) => column.boardId === this.boardId),
+      ),
+    );
     this.orderSub = this.columns$
       .pipe(
-        map(columns => {
+        map((columns) => {
           if (columns) {
             return columns.length;
           }
           return 0;
-        }),
-      ).subscribe(order => this.nextColumnOrder = order);
+        })
+      )
+      .subscribe((order) => (this.nextColumnOrder = order));
   }
 
   openAddColumnDialog(): void {
     this.dialog.open<AddColumnDialogComponent, AddColumnDialogData>(
       AddColumnDialogComponent,
       {
-        data:
-          {
-            boardId: this.boardId,
-            order: this.nextColumnOrder,
-          },
-      });
+        data: {
+          boardId: this.boardId,
+          order: this.nextColumnOrder,
+        },
+      },
+    );
+  }
+
+  drop(event: any) {
+    console.log(event, 'ColumApp');
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
   }
 
   ngOnDestroy(): void {

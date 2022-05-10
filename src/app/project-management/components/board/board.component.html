@@ -1,4 +1,4 @@
-<main *transloco="let t">
+<main *transloco="let t" cdkDropListGroup>
   <div class="title-wrapper">
     <mat-card>
       <mat-card-title>
@@ -7,10 +7,15 @@
     </mat-card>
   </div>
   <div class="columns-container">
-    <app-column *ngFor="let column of columns$ | async"
-                [column]="column"></app-column>
+    <app-column
+      *ngFor="let column of columns$ | async"
+      [column]="column"
+      cdkDrag
+      (cdkDropListDropped)="drop($event)"
+    >
+  </app-column>
     <mat-card (click)="openAddColumnDialog()">
-      {{t('add_column')}}
+      {{ t("add_column") }}
     </mat-card>
   </div>
 </main>

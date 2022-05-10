@@ -1,3 +1,8 @@
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 import { Component, Input } from '@angular/core';
 import { Column } from '../../../interface/interface';
 
@@ -7,9 +12,25 @@ import { Column } from '../../../interface/interface';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent {
-
   @Input() column: Column;
 
-  tasks = [1, 2, 3];
+  tasks = ['Carrots', 'Tomatoes', 'Onions', 'Apples', 'Avocados'];
 
+  drop(event: CdkDragDrop<string[]>) {
+    console.log(event);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex,
+      );
+    }
+  }
 }
