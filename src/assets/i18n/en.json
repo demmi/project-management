@@ -29,5 +29,15 @@
   "about_andrew": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae assumenda animi placeat nulla quaerat magni magnam cumque deleniti. Velit dolorum dolore doloremque error delectus quod quidem doloribus! Fuga, in!",
   "main_video_title": "Video about the application",
   "not_found_title": "PAGE NOT FOUND",
-  "not_found_description": "We're sorry. The page you are looking for cannot be found."
+  "not_found_description": "We're sorry. The page you are looking for cannot be found.",
+  "options": "Options",
+  "search_boards": "Search boards...",
+  "close": "Close",
+  "ok": "Ok",
+  "create_column": "Create column",
+  "add_column": "Add column",
+  "column_title": "Title",
+  "delete": "Delete",
+  "goto_board": "Go to Board",
+  "add_task": "Add task"
 }

@@ -1,11 +1,11 @@
-<mat-card [ngClass]="(index + 1) % 2 === 0 ? 'grey' : 'white'">
+<mat-card [ngClass]="(index + 1) % 2 === 0 ? 'grey' : 'white'" *transloco="let t">
   <mat-card-title>{{ index + 1 }}. {{ board.title }}</mat-card-title>
   <mat-card-actions>
     <button mat-raised-button color="warn" (click)="openDialog()">
-      Delete
+      {{t('delete')}}
     </button>
     <button mat-raised-button color="primary" [routerLink]="[board.id]">
-      Go to Board
+      {{t('goto_board')}}
     </button>
   </mat-card-actions>
 </mat-card>
