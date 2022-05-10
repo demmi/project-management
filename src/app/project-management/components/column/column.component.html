@@ -1,4 +1,4 @@
-<div class="column-container">
+<div class="column-container" *transloco="let t">
   <mat-card class="column">
     <div class="column-header">
       <mat-card-title>{{ column.title }}</mat-card-title>
@@ -6,8 +6,8 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item>Add task</button>
-        <button mat-menu-item>Delete</button>
+        <button mat-menu-item>{{t('add_task')}}</button>
+        <button mat-menu-item>{{t('delete')}}</button>
       </mat-menu>
     </div>
     <mat-card-content>

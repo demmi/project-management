@@ -1,30 +1,30 @@
-<mat-card-content>
+<mat-card-content *transloco="let t">
   <form [formGroup]="form" (ngSubmit)="submit()">
 
     <mat-form-field>
       <input
         matInput
-        placeholder="Name"
+        [placeholder]="t('name')"
         formControlName="name">
       <mat-error *ngIf="name?.hasError('required')">
-        Name is required
+        {{t('nameReq')}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input
         matInput
-        placeholder="Login"
+        [placeholder]="t('logIn')"
         formControlName="login">
       <mat-error *ngIf="login?.hasError('required')">
-        Login is required
+        {{t ('loginReq')}}
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
       <input
         matInput
-        placeholder="Password"
+        [placeholder]="t('password')"
         formControlName="password"
         [type]="hidePassword ? 'password' : 'text'">
       <button
@@ -36,7 +36,7 @@
       </button>
         <mat-error
           *ngIf="password?.hasError('required')">
-          Password is required
+          {{t('passReq')}}
         </mat-error>
     </mat-form-field>
 
@@ -45,7 +45,7 @@
       mat-raised-button
       color="primary"
       class="login-button">
-      Sign Up
+      {{t('sign_up')}}
     </button>
 
   </form>

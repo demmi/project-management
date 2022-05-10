@@ -1,7 +1,7 @@
-<div class="container">
+<div class="container" *transloco="let t">
   <mat-toolbar color="primary">
     <mat-form-field class="options">
-      <mat-label>Options</mat-label>
+      <mat-label>{{t('options')}}</mat-label>
       <mat-select [(ngModel)]="selectedValue" name="option">
         <mat-option
           *ngFor="let option of options"
@@ -11,7 +11,7 @@
       </mat-select>
     </mat-form-field>
     <mat-form-field class="search">
-      <mat-label>Search boards...</mat-label>
+      <mat-label>{{t('search_boards')}}</mat-label>
       <input matInput type="text" [(ngModel)]="valueSearch" />
       <button
         *ngIf="valueSearch"
@@ -20,7 +20,7 @@
         aria-label="Clear"
         (click)="valueSearch = ''"
       >
-        <mat-icon>close</mat-icon>
+        <mat-icon>{{t('close')}}</mat-icon>
       </button>
     </mat-form-field>
   </mat-toolbar>
