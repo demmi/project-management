@@ -10,7 +10,7 @@ export class ColumnComponent {
 
   @Input() column: Column;
 
-  inputBoardHead = '';
+  inputColumnHead = '';
 
   tasks = [1, 2, 3];
 
@@ -21,7 +21,7 @@ export class ColumnComponent {
   }
 
   onTitleInput(event: any) {
-    this.inputBoardHead = event.target.value;
+    this.inputColumnHead = event.target.value;
   }
 
   onCanselEdit() {
@@ -29,6 +29,11 @@ export class ColumnComponent {
   }
 
   onConfirmChange() {
-    console.log(this.inputBoardHead);
+    if (this.inputColumnHead) {
+      console.log(this.inputColumnHead);
+    } else {
+      console.log(this.column.title);
+    }
+    this.onCanselEdit();
   }
 }
