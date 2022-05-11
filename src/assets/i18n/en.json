@@ -39,5 +39,6 @@
   "column_title": "Title",
   "delete": "Delete",
   "goto_board": "Go to Board",
-  "add_task": "Add task"
+  "add_task": "Add task",
+  "submit": "Submit"
 }

@@ -10,6 +10,25 @@ export class ColumnComponent {
 
   @Input() column: Column;
 
+  inputBoardHead = '';
+
   tasks = [1, 2, 3];
 
+  in = true;
+
+  onClickHead() {
+    this.in = false;
+  }
+
+  onTitleInput(event: any) {
+    this.inputBoardHead = event.target.value;
+  }
+
+  onCanselEdit() {
+    this.in = true;
+  }
+
+  onConfirmChange() {
+    console.log(this.inputBoardHead);
+  }
 }
