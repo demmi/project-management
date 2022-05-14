@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Column } from '../../../interface/interface';
+import { ColumnEntityService } from '../../services/column-entity.service';
 
 @Component({
   selector: 'app-column',
@@ -7,6 +8,8 @@ import { Column } from '../../../interface/interface';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent {
+
+  constructor(private columnService: ColumnEntityService) {}
 
   @Input() column: Column;
 
@@ -30,8 +33,10 @@ export class ColumnComponent {
 
   onConfirmChange() {
     if (this.inputColumnHead) {
+      this.columnService.update({ id: this.column.id, title: this.inputColumnHead, boardId: this.column.boardId, order: this.column.order });
       console.log(this.inputColumnHead);
     } else {
+      this.columnService.update({ id: this.column.id, title: this.inputColumnHead, boardId: this.column.boardId, order: this.column.order });
       console.log(this.column.title);
     }
     this.onCanselEdit();
