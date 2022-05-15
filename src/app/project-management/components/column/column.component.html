@@ -24,7 +24,8 @@
       </mat-menu>
     </div>
     <mat-card-content>
-      <app-task *ngFor="let task of tasks$ | async;"></app-task>
+      <app-task *ngFor="let task of tasks$ | async;"
+                [task]="task"></app-task>
     </mat-card-content>
   </mat-card>
 </div>
