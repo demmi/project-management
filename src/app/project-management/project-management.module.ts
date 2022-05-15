@@ -13,6 +13,7 @@ import { ColumnsDataService } from './services/columns/columns-data.service';
 import { TasksDataService } from './services/tasks/tasks-data.service';
 import { BoardCardComponent } from './components/board-card/board-card.component';
 import { AddColumnDialogComponent } from './components/board/add-column-dialog/add-column-dialog.component';
+import { UsersDataService } from './services/users/users-data.service';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,14 @@ export class ProjectManagementModule {
     private boardsDataService: BoardsDataService,
     private columnDataService: ColumnsDataService,
     private taskDataService: TasksDataService,
+    private userDataService: UsersDataService,
   ) {
     eds.registerMetadataMap(entityMetadata);
     entityDataService.registerServices({
       'Board': boardsDataService,
       'Column': columnDataService,
       'Task': taskDataService,
+      'User': userDataService,
     });
   }
 

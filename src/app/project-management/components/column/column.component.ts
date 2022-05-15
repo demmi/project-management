@@ -1,10 +1,13 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Column, ConfirmDialogData } from '../../../interface/interface';
+import { Column, ConfirmDialogData, Task } from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/columns/column-entity.service';
 import { EmmitService } from '../../services/emmit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationModalComponent } from '../../../core/components/confirmation-modal/confirmation-modal.component';
+import { TaskEntityService } from '../../services/tasks/task-entity.service';
+import { map, Observable, tap } from 'rxjs';
+import { User } from '../../../auth/model/user.interface';
 
 @Component({
   selector: 'app-column',
@@ -15,21 +18,31 @@ export class ColumnComponent implements OnInit {
 
   @Input() column: Column;
 
+  @Input() users: User[] | null | undefined;
+
   form: FormGroup;
 
-  tasks = [1, 2, 3];
+  tasks$: Observable<Task[]>;
 
   in = true;
+
+  futureTaskIndex: number;
 
   constructor(
     private columnService: ColumnEntityService,
     private emmitService: EmmitService,
     private fb: FormBuilder,
     private dialog: MatDialog,
+    private taskService: TaskEntityService,
   ) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
+    this.tasks$ = this.taskService.entities$
+      .pipe(
+        map(tasks => tasks.filter((task => task.columnId === this.column.id))),
+        tap(tasks => this.futureTaskIndex = tasks.length),
+      );
   }
 
   private createForm(): FormGroup {
@@ -61,5 +74,21 @@ export class ColumnComponent implements OnInit {
   onClickHead() {
     this.in = false;
     this.form.get('title')?.setValue(this.column.title);
+  }
+
+  addTask() {
+    let userId: string;
+    if (this.users && this.users[0]) {
+      userId = this.users[0].id as string;
+      const newTask: Task = {
+        title: 'Task',
+        order: this.futureTaskIndex,
+        description: 'Task description',
+        boardId: this.column.boardId,
+        columnId: this.column.id,
+        userId,
+      };
+      this.taskService.add(newTask);
+    }
   }
 }
