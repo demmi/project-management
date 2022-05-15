@@ -2,8 +2,9 @@ import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
 import { Column } from '../../interface/interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { first, Observable, switchMap } from 'rxjs';
 import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
+import { EmmitService } from './emmit.service';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnsDataService extends DefaultDataService<Column> {
@@ -12,6 +13,7 @@ export class ColumnsDataService extends DefaultDataService<Column> {
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
     private api: ApiKanbanRestService,
+    private testService: EmmitService,
   ) {
     super('Column', http, httpUrlGenerator);
   }
@@ -23,6 +25,14 @@ export class ColumnsDataService extends DefaultDataService<Column> {
 
   override getWithQuery(boardId: string): Observable<Column[]> {
     return this.api.columnsGet(boardId);
+  }
+
+  override delete(key: number | string): Observable<number | string> {
+    return this.testService.boardId$
+      .pipe(
+        first(),
+        switchMap(boardId => this.api.columnDelete(boardId, key as string)),
+      );
   }
 
 }

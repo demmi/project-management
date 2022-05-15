@@ -7,7 +7,7 @@
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
         <button mat-menu-item>{{t('add_task')}}</button>
-        <button mat-menu-item>{{t('delete')}}</button>
+        <button mat-menu-item (click)="deleteColumn()">{{t('delete')}}</button>
       </mat-menu>
     </div>
     <mat-card-content>

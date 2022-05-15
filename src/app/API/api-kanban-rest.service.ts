@@ -86,8 +86,8 @@ export class ApiKanbanRestService {
     return this.http.get<Column>(this.backendURL + 'boards/' + boardId + '/columns/' + columnId);
   }
 
-  columnDelete(boardId: string, columnId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/columns/' + columnId);
+  columnDelete(boardId: string, columnId: string): Observable<number | string> {
+    return this.http.delete<number | string>(this.backendURL + 'boards/' + boardId + '/columns/' + columnId);
   }
 
   columnPut(boardId: string, columnId: string, param: Column) {
