@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Column, ConfirmDialogData, Task } from '../../../interface/interface';
+import { Column, ConfirmDialogData, TaskDialogData, Task } from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/columns/column-entity.service';
 import { EmmitService } from '../../services/emmit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -8,6 +8,8 @@ import { ConfirmationModalComponent } from '../../../core/components/confirmatio
 import { TaskEntityService } from '../../services/tasks/task-entity.service';
 import { map, Observable, tap } from 'rxjs';
 import { User } from '../../../auth/model/user.interface';
+import { TaskDialogComponent } from '../task/add-edit-task-modal/task-modal';
+
 
 @Component({
   selector: 'app-column',
@@ -90,5 +92,15 @@ export class ColumnComponent implements OnInit {
       };
       this.taskService.add(newTask);
     }
+  }
+
+  addTaskDialog(): void {
+    this.dialog.open<TaskDialogComponent, TaskDialogData>(TaskDialogComponent, {
+      data: {
+        boardId: '1',
+        columId: '1',
+        order: 1,
+      },
+    });
   }
 }

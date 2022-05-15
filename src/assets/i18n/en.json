@@ -40,5 +40,7 @@
   "delete": "Delete",
   "goto_board": "Go to Board",
   "add_task": "Add task",
-  "submit": "Submit"
+  "submit": "Submit",
+  "description": "Description",
+  "task": "Task"
 }
