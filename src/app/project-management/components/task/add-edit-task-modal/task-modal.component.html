@@ -7,7 +7,15 @@
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ t("description") }}</mat-label>
-      <input matInput formControlName="description" />
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>User</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option *ngFor="let user of users$ | async" [value]="user.id">
+          {{user.login}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
   </div>
   <div mat-dialog-actions>

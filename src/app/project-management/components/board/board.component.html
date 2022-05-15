@@ -8,8 +8,7 @@
   </div>
   <div class="columns-container">
     <app-column *ngFor="let column of columns$ | async"
-                [column]="column"
-                [users]="users$ | async"></app-column>
+                [column]="column"></app-column>
     <mat-card (click)="openAddColumnDialog()">
       {{t('add_column')}}
     </mat-card>

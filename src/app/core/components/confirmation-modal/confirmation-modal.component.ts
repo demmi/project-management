@@ -19,7 +19,6 @@ export class ConfirmationModalComponent {
     private columnService: ColumnEntityService,
   ) {}
 
-
   confirm(): void {
     if (this.data.entityType === 'board' && this.data.entity.id) {
       this.boardService.delete(this.data.entity.id);

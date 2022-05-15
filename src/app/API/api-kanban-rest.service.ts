@@ -49,8 +49,8 @@ export class ApiKanbanRestService {
     return this.http.post<Board>(this.backendURL + 'boards', param);
   }
 
-  boardGet(id: string) {
-    return this.http.get(this.backendURL + 'boards/' + id);
+  boardGet(id: string): Observable<Board> {
+    return this.http.get<Board>(this.backendURL + 'boards/' + id);
   }
 
   boardDelete(id: string): Observable<number | string> {
@@ -95,8 +95,8 @@ export class ApiKanbanRestService {
   }
 
   //Tasks
-  tasksGet(boardId: string, columId: string) {
-    return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks');
+  tasksGet(boardId: string, columId: string): Observable<Task[]> {
+    return this.http.get<Task[]>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks');
   }
 
   tasksPost(boardId: string, columId: string, param: Task): Observable<Task> {
