@@ -2,10 +2,10 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddColumnDialogComponent } from './add-column-dialog/add-column-dialog.component';
 import { ActivatedRoute } from '@angular/router';
-import { BoardEntityService } from '../../services/board-entity.service';
+import { BoardEntityService } from '../../services/boards/board-entity.service';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { Board, Column, AddColumnDialogData } from '../../../interface/interface';
-import { ColumnEntityService } from '../../services/column-entity.service';
+import { ColumnEntityService } from '../../services/columns/column-entity.service';
 
 @Component({
   selector: 'app-board',

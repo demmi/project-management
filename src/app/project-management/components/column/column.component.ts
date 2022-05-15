@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Column, ConfirmDialogData } from '../../../interface/interface';
-import { ColumnEntityService } from '../../services/column-entity.service';
+import { ColumnEntityService } from '../../services/columns/column-entity.service';
 import { EmmitService } from '../../services/emmit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';

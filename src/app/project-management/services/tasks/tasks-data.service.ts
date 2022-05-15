@@ -1,5 +1,5 @@
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
-import { Task } from '../../interface/interface';
+import { Task } from '../../../interface/interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
