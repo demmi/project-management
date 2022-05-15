@@ -1,7 +1,14 @@
 <div class="column-container" *transloco="let t">
   <mat-card class="column">
     <div class="column-header">
-      <mat-card-title>{{ column.title }}</mat-card-title>
+      <mat-card-title *ngIf="in; else input" (click)="onClickHead()">{{ column.title }}</mat-card-title>
+      <ng-template #input>
+        <button mat-raised-button color="primary" (click)="onCanselEdit()">{{t('cancel')}}</button>
+        <button mat-raised-button color="primary" (click)="onConfirmChange()">{{t('submit')}}</button>
+        <mat-form-field>
+          <input matInput [value]="column.title" (input)="onTitleInput($event)">
+        </mat-form-field>
+      </ng-template>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
       </button>
