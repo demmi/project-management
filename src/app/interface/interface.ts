@@ -29,3 +29,9 @@ export interface AddColumnDialogData {
   boardId: string;
   order: number;
 }
+
+export interface TaskDialogData {
+  boardId: string;
+  columId: string;
+  order: number;
+}
