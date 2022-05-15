@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { first, Observable, switchMap } from 'rxjs';
 import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
 import { EmmitService } from './emmit.service';
+import { Update } from '@ngrx/entity';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnsDataService extends DefaultDataService<Column> {
@@ -32,6 +33,15 @@ export class ColumnsDataService extends DefaultDataService<Column> {
       .pipe(
         first(),
         switchMap(boardId => this.api.columnDelete(boardId, key as string)),
+      );
+  }
+
+  override update(update: Update<Column>): Observable<Column> {
+    const { id, ...rest } = update.changes;
+    return this.emmitService.boardId$
+      .pipe(
+        first(),
+        switchMap(boardId => this.api.columnPut(boardId, id as string, rest as Column)),
       );
   }
 
