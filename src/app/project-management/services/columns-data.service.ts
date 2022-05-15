@@ -13,7 +13,7 @@ export class ColumnsDataService extends DefaultDataService<Column> {
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
     private api: ApiKanbanRestService,
-    private testService: EmmitService,
+    private emmitService: EmmitService,
   ) {
     super('Column', http, httpUrlGenerator);
   }
@@ -28,7 +28,7 @@ export class ColumnsDataService extends DefaultDataService<Column> {
   }
 
   override delete(key: number | string): Observable<number | string> {
-    return this.testService.boardId$
+    return this.emmitService.boardId$
       .pipe(
         first(),
         switchMap(boardId => this.api.columnDelete(boardId, key as string)),

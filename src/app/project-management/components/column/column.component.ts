@@ -20,12 +20,12 @@ export class ColumnComponent {
 
   constructor(
     private columnService: ColumnEntityService,
-    private testService: EmmitService,
+    private emmitService: EmmitService,
   ) {}
 
 
   deleteColumn() {
-    this.testService.emmitBoardId(this.column.boardId as string);
+    this.emmitService.emmitBoardId(this.column.boardId as string);
     this.columnService.delete(this.column);
   }
 
@@ -44,10 +44,8 @@ export class ColumnComponent {
   onConfirmChange() {
     if (this.inputColumnHead) {
       this.columnService.update({ id: this.column.id, title: this.inputColumnHead, boardId: this.column.boardId, order: this.column.order });
-      console.log(this.inputColumnHead);
     } else {
       this.columnService.update({ id: this.column.id, title: this.inputColumnHead, boardId: this.column.boardId, order: this.column.order });
-      console.log(this.column.title);
     }
     this.onCanselEdit();
   }
