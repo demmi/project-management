@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddColumnDialogComponent } from './add-column-dialog/add-column-dialog.component';
 import { ActivatedRoute } from '@angular/router';
-import { BoardEntityService } from '../../services/board-entity.service';
+import { BoardEntityService } from '../../services/boards/board-entity.service';
 import { map, Observable, Subscription, tap } from 'rxjs';
 import { Board, Column, AddColumnDialogData } from '../../../interface/interface';
-import { ColumnEntityService } from '../../services/column-entity.service';
+import { ColumnEntityService } from '../../services/columns/column-entity.service';
+import { User } from '../../../auth/model/user.interface';
+import { UserEntityService } from '../../services/users/user-entity.service';
 
 @Component({
   selector: 'app-board',
@@ -17,6 +19,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   board$: Observable<Board | undefined>;
 
   columns$: Observable<Column[] | undefined>;
+
+  users$: Observable<User[] | undefined>;
 
   columns: number[] = [];
 
@@ -31,10 +35,12 @@ export class BoardComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private boardsService: BoardEntityService,
     private columnService: ColumnEntityService,
+    private userService: UserEntityService,
   ) {}
 
   ngOnInit(): void {
     let columnsLoaded: boolean = false;
+    let usersLoaded: boolean = false;
     this.boardId = this.route.snapshot.params['id'];
     this.board$ = this.boardsService.entities$
       .pipe(
@@ -49,6 +55,15 @@ export class BoardComponent implements OnInit, OnDestroy {
           }
         }),
         map(columns => columns.filter(column => column.boardId === this.boardId)),
+      );
+    this.users$ = this.userService.entities$
+      .pipe(
+        tap(() => {
+          if (!usersLoaded) {
+            this.userService.getAll();
+            usersLoaded = true;
+          }
+        }),
       );
     this.orderSub = this.columns$
       .pipe(

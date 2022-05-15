@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Board } from '../../../../interface/interface';
-import { BoardEntityService } from '../../../../project-management/services/board-entity.service';
+import { BoardEntityService } from '../../../../project-management/services/boards/board-entity.service';
 import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-add-board',
+  selector: 'app-add-boards',
   templateUrl: './add-board-dialog.component.html',
 })
 export class AddBoardDialogComponent {

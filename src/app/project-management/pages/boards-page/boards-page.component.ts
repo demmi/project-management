@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from '../../../interface/interface';
-import { BoardEntityService } from '../../services/board-entity.service';
+import { BoardEntityService } from '../../services/boards/board-entity.service';
 
 interface Options {
   value: string;
