@@ -2,6 +2,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   height: 64px;
 
   mat-nav-list {
@@ -36,4 +37,20 @@ span {
 .logo {
   width: 150px;
   height: 50px;
+}
+
+@media (max-width: 600px) {
+  footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: auto;
+  }
+
+  span {
+    margin: 0;
+    text-align: center;
+  }
 }
