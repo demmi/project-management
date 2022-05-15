@@ -1,12 +1,12 @@
 import { EntityCollectionServiceBase, EntityCollectionServiceElementsFactory } from '@ngrx/data';
-import { Column } from '../../interface/interface';
 import { Injectable } from '@angular/core';
+import { Task } from '../../../interface/interface';
 
 @Injectable({ providedIn: 'root' })
-export class ColumnEntityService extends EntityCollectionServiceBase<Column> {
+export class TaskEntityService extends EntityCollectionServiceBase<Task> {
 
   constructor(serviceElementFactory: EntityCollectionServiceElementsFactory) {
-    super('Column', serviceElementFactory);
+    super('Task', serviceElementFactory);
   }
 
 }

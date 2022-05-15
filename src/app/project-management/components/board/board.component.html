@@ -1,4 +1,4 @@
-<main>
+<main *transloco="let t">
   <div class="title-wrapper">
     <mat-card>
       <mat-card-title>
@@ -8,9 +8,10 @@
   </div>
   <div class="columns-container">
     <app-column *ngFor="let column of columns$ | async"
-                [column]="column"></app-column>
+                [column]="column"
+                [users]="users$ | async"></app-column>
     <mat-card (click)="openAddColumnDialog()">
-      Add column +
+      {{t('add_column')}}
     </mat-card>
   </div>
 </main>

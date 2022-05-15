@@ -2,7 +2,7 @@ import { Component, Inject, OnDestroy } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AddColumnDialogData, Column } from '../../../../interface/interface';
-import { ColumnEntityService } from '../../../services/column-entity.service';
+import { ColumnEntityService } from '../../../services/columns/column-entity.service';
 import { Subscription } from 'rxjs';
 
 @Component({

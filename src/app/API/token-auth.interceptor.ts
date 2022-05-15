@@ -17,6 +17,7 @@ export class TokenAuthInterceptor implements HttpInterceptor {
   constructor(private store: Store) {
     this.store
       .select(AuthSelectors.selectToken)
+      // eslint-disable-next-line ngrx/no-store-subscription
       .subscribe((token) => (this.token = token));
   }
 
@@ -24,7 +25,7 @@ export class TokenAuthInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    if (this.token) {
+    if (this.token && request.url.includes('https://rss-pm.herokuapp.com')) {
       if (this.token.trim().length > 0) {
         request = request.clone({
           setHeaders: {

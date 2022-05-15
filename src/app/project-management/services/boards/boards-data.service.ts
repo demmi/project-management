@@ -1,9 +1,9 @@
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
-import { Board } from '../../interface/interface';
+import { Board } from '../../../interface/interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
+import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsDataService extends DefaultDataService<Board> {

@@ -1,14 +1,3 @@
-export interface Registration {
-  name: string;
-  login: string;
-  password: string;
-}
-
-export interface Auth {
-  login: string;
-  password: string;
-}
-
 export interface Board {
   id?: string;
   title: string;
@@ -26,8 +15,8 @@ export interface Task {
   title: string;
   order: number;
   description: string;
-  userId: { description: string };
-  boardId?: { description: string };
+  boardId?: string;
+  userId?: string;
   columnId?: string;
 }
 

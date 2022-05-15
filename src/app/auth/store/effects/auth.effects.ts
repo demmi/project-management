@@ -49,6 +49,7 @@ export class AuthEffects {
               },
             ),
           ),
+          // eslint-disable-next-line ngrx/prefer-concat-latest-from
           withLatestFrom(this.store.select(AuthSelectors.selectUser)),
           map(
             ([response, user]) => AuthActions.login(

@@ -19,5 +19,6 @@ export const entityMetadata: EntityMetadataMap = {
       optimisticDelete: true,
     },
   },
+  User: {},
 };
 

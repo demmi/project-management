@@ -1,10 +1,9 @@
 <header *transloco="let t">
-  <mat-toolbar color="primary">
+  <mat-toolbar color="primary" [ngClass]="{ bottom: top$ | async }">
     <div class="rout-container">
       <button mat-button routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{t ('mainPage')}}</button>
       <button mat-button routerLink="/boards" routerLinkActive="active">{{t ('boardPage')}}</button>
     </div>
-    <span class="spacer"></span>
     <div>
       <mat-select [(value)]="siteLanguage" (selectionChange)="changeSiteLanguage(siteLanguage)">
         <mat-option value="en">English</mat-option>
@@ -12,7 +11,7 @@
       </mat-select>
     </div>
     <span class="spacer"></span>
-    <button class="create" mat-raised-button *ngIf="router.url.includes('boards')" (click)="newBoardDialog()">{{t ('newBoard')}}</button>
+    <button class="create" mat-raised-button *ngIf="router.url === '/boards'" (click)="newBoardDialog()">{{t ('newBoard')}}</button>
     <div class="user-greeting" *ngIf="isLogged$ | async; else login">
       <p *ngIf="user$ | async as user">{{t ('greeting')}} {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>

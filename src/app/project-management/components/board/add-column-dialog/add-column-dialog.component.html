@@ -1,11 +1,11 @@
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <h1 mat-dialog-title>Create column</h1>
+<form [formGroup]="form" (ngSubmit)="submit()" *transloco="let t">
+  <h1 mat-dialog-title>{{t('create_column')}}</h1>
   <mat-form-field appearance="fill">
-    <mat-label>Title</mat-label>
+    <mat-label>{{t('column_title')}}</mat-label>
     <input matInput formControlName="title">
   </mat-form-field>
   <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-    <button mat-button type="submit">Ok</button>
+    <button mat-button mat-dialog-close>{{t('close')}}</button>
+    <button mat-button type="submit">{{t('ok')}}</button>
   </div>
 </form>
