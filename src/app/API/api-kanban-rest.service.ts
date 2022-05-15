@@ -23,8 +23,8 @@ export class ApiKanbanRestService {
   }
 
   //Users
-  usersGet() {
-    return this.http.get(this.backendURL + 'users');
+  usersGet(): Observable<User[]> {
+    return this.http.get<User[]>(this.backendURL + 'users');
   }
 
   userGet(id: string) {
@@ -99,8 +99,8 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks');
   }
 
-  tasksPost(boardId: string, columId: string, param: Task) {
-    return this.http.post(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks', param);
+  tasksPost(boardId: string, columId: string, param: Task): Observable<Task> {
+    return this.http.post<Task>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks', param);
   }
 
   taskGet(boardId: string, columId: string, taskId: string) {

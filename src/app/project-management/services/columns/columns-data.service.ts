@@ -1,10 +1,10 @@
 import { DefaultDataService, HttpUrlGenerator } from '@ngrx/data';
-import { Column } from '../../interface/interface';
+import { Column } from '../../../interface/interface';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { first, Observable, switchMap } from 'rxjs';
-import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
-import { EmmitService } from './emmit.service';
+import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
+import { EmmitService } from '../emmit.service';
 import { Update } from '@ngrx/entity';
 
 @Injectable({ providedIn: 'root' })

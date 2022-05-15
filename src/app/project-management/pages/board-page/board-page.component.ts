@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-board-page',
+  selector: 'app-boards-page',
   templateUrl: './board-page.component.html',
 })
 export class BoardPageComponent {}

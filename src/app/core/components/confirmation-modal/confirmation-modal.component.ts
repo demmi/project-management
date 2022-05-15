@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { BoardEntityService } from '../../../project-management/services/board-entity.service';
+import { BoardEntityService } from '../../../project-management/services/boards/board-entity.service';
 import { Column, ConfirmDialogData } from '../../../interface/interface';
 import { EmmitService } from '../../../project-management/services/emmit.service';
-import { ColumnEntityService } from '../../../project-management/services/column-entity.service';
+import { ColumnEntityService } from '../../../project-management/services/columns/column-entity.service';
 
 @Component({
   selector: 'app-confirmation-modal',

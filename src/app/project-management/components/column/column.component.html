@@ -19,12 +19,12 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item>{{t('add_task')}}</button>
+        <button mat-menu-item (click)="addTask()">{{t('add_task')}}</button>
         <button mat-menu-item (click)="deleteColumn()">{{t('delete')}}</button>
       </mat-menu>
     </div>
     <mat-card-content>
-      <app-task *ngFor="let task of tasks"></app-task>
+      <app-task *ngFor="let task of tasks$ | async;"></app-task>
     </mat-card-content>
   </mat-card>
 </div>
