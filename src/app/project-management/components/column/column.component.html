@@ -3,18 +3,24 @@
     <div class="column-header">
       <mat-card-title *ngIf="in; else input" (click)="onClickHead()">{{ column.title }}</mat-card-title>
       <ng-template #input>
-        <button mat-raised-button color="primary" (click)="onCanselEdit()">{{t('cancel')}}</button>
-        <button mat-raised-button color="primary" (click)="onConfirmChange()">{{t('submit')}}</button>
-        <mat-form-field>
-          <input matInput [value]="column.title" (input)="onTitleInput($event)">
-        </mat-form-field>
+        <form (ngSubmit)="updateColumnTitle()" [formGroup]="form">
+          <button mat-mini-fab color="warn" type="button" (click)="in = true">
+            <mat-icon>cancel</mat-icon>
+          </button>
+          <button mat-mini-fab color="primary" type="submit">
+            <mat-icon>check_circle</mat-icon>
+          </button>
+          <mat-form-field>
+            <input matInput formControlName="title">
+          </mat-form-field>
+        </form>
       </ng-template>
       <button mat-icon-button [matMenuTriggerFor]="menu">
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
         <button mat-menu-item>{{t('add_task')}}</button>
-        <button mat-menu-item>{{t('delete')}}</button>
+        <button mat-menu-item (click)="deleteColumn()">{{t('delete')}}</button>
       </mat-menu>
     </div>
     <mat-card-content>
