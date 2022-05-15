@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Column } from '../../../interface/interface';
+import { Column, ConfirmDialogData } from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/column-entity.service';
 import { EmmitService } from '../../services/emmit.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationModalComponent } from '../../../core/components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-column',
@@ -23,6 +25,7 @@ export class ColumnComponent implements OnInit {
     private columnService: ColumnEntityService,
     private emmitService: EmmitService,
     private fb: FormBuilder,
+    private dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -36,8 +39,15 @@ export class ColumnComponent implements OnInit {
   }
 
   deleteColumn() {
-    this.emmitService.emmitBoardId(this.column.boardId as string);
-    this.columnService.delete(this.column);
+    this.dialog.open<ConfirmationModalComponent, ConfirmDialogData>(
+      ConfirmationModalComponent,
+      {
+        data: {
+          entityType: 'column',
+          entity: this.column,
+        },
+      },
+    );
   }
 
   updateColumnTitle() {
