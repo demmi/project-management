@@ -1,6 +1,7 @@
 export interface Board {
   id?: string;
   title: string;
+  columns?: Array<Column>;
 }
 
 export interface Column {
@@ -8,16 +9,24 @@ export interface Column {
   title: string;
   order: number;
   boardId?: string;
+  tasks: Task[];
 }
 
 export interface Task {
   id?: string;
   title: string;
   order: number;
+  done: boolean;
   description: string;
   userId: { description: string };
   boardId?: { description: string };
   columnId?: string;
+  files?: File[];
+}
+
+export interface File {
+  filename: string;
+  fileSize: number;
 }
 
 export interface ConfirmDialogData {

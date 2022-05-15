@@ -7,7 +7,6 @@ import { ApiKanbanRestService } from '../../API/api-kanban-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class ColumnsDataService extends DefaultDataService<Column> {
-
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
@@ -16,13 +15,12 @@ export class ColumnsDataService extends DefaultDataService<Column> {
     super('Column', http, httpUrlGenerator);
   }
 
-  override add(column: Column): Observable<Column> {
+  /*   override add(column: Column): Observable<Column> {
     const { order, title, boardId } = column;
     return this.api.columnsPost(boardId as string, { order, title });
-  }
+  } */
 
   override getWithQuery(boardId: string): Observable<Column[]> {
     return this.api.columnsGet(boardId);
   }
-
 }

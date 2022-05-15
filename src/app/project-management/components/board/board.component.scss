@@ -24,6 +24,10 @@ main {
     padding: 10px;
     overflow-x: auto;
 
+    app-column {
+      min-width: 300px;
+    }
+
     mat-card {
       height: 100px;
       width: 350px;

@@ -2,13 +2,13 @@
   <div class="title-wrapper">
     <mat-card>
       <mat-card-title>
-        {{ (board$ | async)?.title }}
+        {{ board.title }}
       </mat-card-title>
     </mat-card>
   </div>
   <div class="columns-container">
     <app-column
-      *ngFor="let column of columns$ | async"
+      *ngFor="let column of columns"
       [column]="column"
       cdkDrag
       (cdkDropListDropped)="drop($event)"

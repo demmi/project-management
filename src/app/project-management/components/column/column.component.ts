@@ -14,9 +14,13 @@ import { Column } from '../../../interface/interface';
 export class ColumnComponent {
   @Input() column: Column;
 
-  tasks = ['Carrots', 'Tomatoes', 'Onions', 'Apples', 'Avocados'];
+  tasks: Task | any;
 
-  drop(event: CdkDragDrop<string[]>) {
+  ngOnInit(): void {
+    this.tasks = this.column.tasks;
+  }
+
+  drop(event: CdkDragDrop<any>) {
     console.log(event);
     if (event.previousContainer === event.container) {
       moveItemInArray(

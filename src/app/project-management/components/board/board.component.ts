@@ -10,7 +10,8 @@ import {
   AddColumnDialogData,
 } from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/column-entity.service';
-import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { BoardsDataService } from '../../services/boards-data.service';
 
 @Component({
   selector: 'app-board',
@@ -22,7 +23,9 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   columns$: Observable<Column[] | undefined>;
 
-  columns: number[] = [];
+  board: Board | any;
+
+  columns: Array<Column> | any;
 
   boardId: string;
 
@@ -35,9 +38,12 @@ export class BoardComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private boardsService: BoardEntityService,
     private columnService: ColumnEntityService,
+    private boardsDataService: BoardsDataService,
   ) {}
 
   ngOnInit(): void {
+    this.board = this.boardsDataService.dataBoard;
+    this.columns = this.boardsDataService.dataBoard.columns;
     let columnsLoaded: boolean = false;
     this.boardId = this.route.snapshot.params['id'];
     this.board$ = this.boardsService.entities$.pipe(
@@ -61,7 +67,7 @@ export class BoardComponent implements OnInit, OnDestroy {
             return columns.length;
           }
           return 0;
-        })
+        }),
       )
       .subscribe((order) => (this.nextColumnOrder = order));
   }
