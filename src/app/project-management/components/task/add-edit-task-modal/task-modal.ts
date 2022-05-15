@@ -29,7 +29,7 @@ export class TaskDialogComponent {
       ]),
       description: this.fb.control(null, [
         Validators.required,
-        Validators.minLength(10),
+        Validators.minLength(3),
       ]),
     });
   }

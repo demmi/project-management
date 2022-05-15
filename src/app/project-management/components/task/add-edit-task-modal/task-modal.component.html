@@ -1,12 +1,12 @@
 <form [formGroup]="form" (ngSubmit)="submit()" *transloco="let t">
-  <h2 mat-dialog-title>Task</h2>
+  <h2>{{ t("task") }}</h2>
   <div class="inputs">
     <mat-form-field appearance="fill">
-      <mat-label>Task title</mat-label>
+      <mat-label>{{ t("column_title") }}</mat-label>
       <input matInput formControlName="title" />
     </mat-form-field>
     <mat-form-field appearance="fill">
-      <mat-label>Description</mat-label>
+      <mat-label>{{ t("description") }}</mat-label>
       <input matInput formControlName="description" />
     </mat-form-field>
   </div>
