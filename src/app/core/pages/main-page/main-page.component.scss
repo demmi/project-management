@@ -2,24 +2,32 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
+  flex-wrap: wrap;
   max-width: 1200px;
   margin: 0 auto;
   min-height: calc(100vh - 100px);
+  padding-bottom: 20px;
 
   .img-main {
-    width: 700px;
+    max-width: 700px;
+    min-width: 300px;
+    padding: 10px;
+    width: 50%;
   }
 
   .text-main {
-    width: 450px;
+    max-width: 450px;
+    min-width: 300px;
+    width: 50%;
     height: 400px;
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     line-height: 1.5;
     font-weight: 500;
+    padding: 10px;
 
     .title {
-      font-size: 3rem;
+      font-size: 2rem;
       font-weight: 600;
     }
   }
@@ -34,6 +42,8 @@
 
   iframe {
     margin: 10px;
+    width: 560px;
+    height: 315px;
   }
 }
 
@@ -54,6 +64,7 @@
     mat-card {
       max-width: 320px;
       margin: 0 15px;
+      margin: 10px;
 
       mat-card-actions {
         display: flex;
@@ -68,4 +79,14 @@
 .section-title {
   font-size: 2rem;
   font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .video-section {
+    iframe {
+      margin: 0;
+      width: 320px;
+      height: 180px;
+    }
+  }
 }
