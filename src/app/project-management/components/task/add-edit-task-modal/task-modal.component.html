@@ -3,7 +3,7 @@
   <div class="inputs">
     <mat-form-field appearance="fill">
       <mat-label>{{ t("column_title") }}</mat-label>
-      <input matInput formControlName="title" />
+      <input matInput formControlName="title"/>
     </mat-form-field>
     <mat-form-field appearance="fill">
       <mat-label>{{ t("description") }}</mat-label>
@@ -20,6 +20,9 @@
   </div>
   <div mat-dialog-actions>
     <button mat-button mat-dialog-close>{{ t("close") }}</button>
-    <button mat-button type="submit">{{ t("ok") }}</button>
+    <button mat-button type="submit" *ngIf="data.mode === 'create'">{{ t("ok") }}</button>
+    <button mat-button type="button" *ngIf="edit"
+            (click)="disableEnableControls(false); edit = false">{{ t("edit") }}</button>
+    <button mat-button type="submit" *ngIf="!edit && data.mode === 'edit'">{{ t("save") }}</button>
   </div>
 </form>

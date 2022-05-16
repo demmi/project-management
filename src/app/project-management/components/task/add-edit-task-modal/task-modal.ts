@@ -7,6 +7,11 @@ import { UserEntityService } from '../../../services/users/user-entity.service';
 import { Observable, tap } from 'rxjs';
 import { User } from '../../../../auth/model/user.interface';
 
+interface InitialFormState {
+  title: string;
+  description: string;
+  userId: string;
+}
 
 @Component({
   selector: 'app-add-task-dialog',
@@ -19,6 +24,8 @@ export class TaskDialogComponent implements OnInit {
 
   users$: Observable<User[]>;
 
+  edit: boolean;
+
   constructor(
     private dialogRef: MatDialogRef<TaskDialogComponent>,
     private fb: FormBuilder,
@@ -28,6 +35,8 @@ export class TaskDialogComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.edit = this.data.mode === 'edit';
+    this.disableEnableControls(this.edit);
     let usersLoaded: boolean = false;
     this.users$ = this.userService.entities$
       .pipe(
@@ -41,22 +50,56 @@ export class TaskDialogComponent implements OnInit {
   }
 
   createForm(): FormGroup {
+    const initialFormState = this.getInitialFormState();
     return this.fb.group({
-      title: this.fb.control(null, [
+      title: this.fb.control(initialFormState.title, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      description: this.fb.control(null, [
+      description: this.fb.control(initialFormState.description, [
         Validators.required,
         Validators.minLength(3),
       ]),
-      userId: this.fb.control(null, [Validators.required]),
+      userId: this.fb.control(initialFormState.userId, [Validators.required]),
     });
+  }
+
+  private getInitialFormState(): InitialFormState {
+    if (this.data.mode === 'edit') {
+      const { task } = this.data;
+      return {
+        title: task?.title as string,
+        description: task?.description as string,
+        userId: task?.userId as string,
+      };
+    }
+    return {
+      title: '',
+      description: '',
+      userId: '',
+    };
+  }
+
+  disableEnableControls(disable: boolean): void {
+    if (disable) {
+      this.form.get('title')?.disable();
+      this.form.get('description')?.disable();
+      this.form.get('userId')?.disable();
+      return;
+    }
+    this.form.get('title')?.enable();
+    this.form.get('description')?.enable();
+    this.form.get('userId')?.enable();
   }
 
   submit(): void {
     if (this.form.valid) {
-      this.taskService.add({ ...this.form.value, ...this.data });
+      if (this.data.mode === 'edit') {
+        this.taskService.update({ ...this.data.task, ...this.form.value });
+      } else {
+        const { mode, ...rest } = this.data;
+        this.taskService.add({ ...this.form.value, ...rest });
+      }
       this.dialogRef.close();
     }
   }
