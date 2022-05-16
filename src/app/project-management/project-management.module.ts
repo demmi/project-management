@@ -14,6 +14,7 @@ import { TasksDataService } from './services/tasks/tasks-data.service';
 import { BoardCardComponent } from './components/board-card/board-card.component';
 import { AddColumnDialogComponent } from './components/board/add-column-dialog/add-column-dialog.component';
 import { UsersDataService } from './services/users/users-data.service';
+import { SortBoardsPipe } from '../pipes/sort-boards.pipe';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { UsersDataService } from './services/users/users-data.service';
     BoardsPageComponent,
     BoardCardComponent,
     AddColumnDialogComponent,
+    SortBoardsPipe,
   ],
   imports: [
     SharedModule,

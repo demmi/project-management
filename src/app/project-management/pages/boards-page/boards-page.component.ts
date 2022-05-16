@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Board } from '../../../interface/interface';
 import { BoardEntityService } from '../../services/boards/board-entity.service';
+import { BoardsSortService } from '../../services/boards/boards-sort.service';
 
 interface Options {
   value: string;
@@ -27,10 +28,19 @@ export class BoardsPageComponent implements OnInit {
     { value: 'users', viewValue: 'Users' },
   ];
 
-  constructor(private boardsService: BoardEntityService) {}
+  constructor(
+    private boardsService: BoardEntityService,
+    private sortBoards: BoardsSortService,
+  ) {}
 
   ngOnInit(): void {
     this.boards$ = this.boardsService.entities$;
+    this.sortBoards.getBoards();
+    this.sortBoards.getUsers();
   }
 
+  sort(event: Event) {
+    console.log(event);
+    console.log(this.sortBoards.tasksAll);
+  }
 }
