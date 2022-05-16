@@ -107,12 +107,14 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
-  taskDelete(boardId: string, columId: string, taskId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
+  taskDelete(boardId: string, columId: string, taskId: string): Observable<number | string> {
+    return this.http
+      .delete<number | string>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
   taskPut(boardId: string, columId: string, taskId: string, param: Task): Observable<Task> {
-    return this.http.put<Task>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId, param);
+    return this.http
+      .put<Task>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId, param);
   }
 
   //Upload/Download file

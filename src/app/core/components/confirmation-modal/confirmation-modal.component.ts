@@ -34,17 +34,23 @@ export class ConfirmationModalComponent implements OnDestroy {
 
   confirm(): void {
     const entityId = this.data.entity.id;
+    const entity = this.data.entity;
     if (this.data.entityType === 'board' && entityId) {
       this.boardService.delete(entityId);
       this.removeFromCacheByEntityId<Column>(entityId, 'boardId', this.columnService);
       this.removeFromCacheByEntityId<Task>(entityId, 'boardId', this.taskService);
     }
     if (this.data.entityType === 'column' && entityId) {
-      this.emmitService.emmitBoardId((this.data.entity as Column).boardId as string);
-      this.columnService.delete(this.data.entity as Column);
+      this.emmitService.emmitBoardId((entity as Column).boardId as string);
+      this.columnService.delete(entity as Column);
       this.removeFromCacheByEntityId<Task>(entityId, 'columnId', this.taskService);
     }
-    this.dialogRef.close();
+    if (this.data.entityType === 'task' && entityId) {
+      this.emmitService.emmitBoardId((entity as Task).boardId as string);
+      this.emmitService.emmitColumnId((entity as Task).columnId as string);
+      this.taskService.delete(entity as Task);
+    }
+    this.dialogRef.close(true);
   }
 
   private removeFromCacheByEntityId<T extends Ids>(

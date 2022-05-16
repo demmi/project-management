@@ -24,5 +24,8 @@
     <button mat-button type="button" *ngIf="edit"
             (click)="disableEnableControls(false); edit = false">{{ t("edit") }}</button>
     <button mat-button type="submit" *ngIf="!edit && data.mode === 'edit'">{{ t("save") }}</button>
+    <button mat-button type="button" color="warn"
+            *ngIf="data.mode === 'edit'"
+            (click)="deleteTask()">{{ t("delete") }}</button>
   </div>
 </form>
