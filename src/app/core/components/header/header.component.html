@@ -16,7 +16,7 @@
       <p *ngIf="user$ | async as user">{{t ('greeting')}} {{user.login}}</p>
       <button mat-mini-fab color="warn" [mat-menu-trigger-for]="userMenu" *ngIf="user$ | async as user">{{user.login[0]}}</button>
       <mat-menu #userMenu='matMenu'>
-        <a mat-menu-item routerLink="#">{{t('editProfile')}}</a>
+        <a mat-menu-item routerLink="/useredit">{{t('editProfile')}}</a>
         <button mat-menu-item (click)="LogOut()">{{t('logout')}}</button>
       </mat-menu>
     </div>

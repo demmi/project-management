@@ -5,6 +5,7 @@ import { LoginSignupPageComponent } from './auth/pages/login-signup-page/login-s
 import { MainPageComponent } from './core/pages/main-page/main-page.component';
 import { AuthGuard } from './auth/services/auth.guard';
 import { AuthTrueGuard } from './auth/services/auth-true.guard';
+import { UserEditComponent } from './auth/components/user-edit/user-edit.component';
 
 const routes: Routes = [
   { path: '', component: MainPageComponent },
@@ -25,6 +26,11 @@ const routes: Routes = [
     path: 'signup',
     component: LoginSignupPageComponent,
     canActivate: [AuthTrueGuard],
+  },
+  {
+    path: 'useredit',
+    component: UserEditComponent,
+    canActivate: [AuthGuard],
   },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', redirectTo: '/404' },

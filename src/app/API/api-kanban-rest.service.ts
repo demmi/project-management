@@ -27,8 +27,8 @@ export class ApiKanbanRestService {
     return this.http.get<User[]>(this.backendURL + 'users');
   }
 
-  userGet(id: string) {
-    return this.http.get(this.backendURL + 'users/' + id);
+  userGet(id: string): Observable<User> {
+    return this.http.get<User>(this.backendURL + 'users/' + id);
   }
 
   userDelete(id: string) {
@@ -36,8 +36,8 @@ export class ApiKanbanRestService {
   }
 
   //Param interface?
-  userPut(id: string, param: Object) {
-    return this.http.put(this.backendURL + 'users/' + id, param);
+  userPut(id: string, param: User) {
+    return this.http.put<User>(this.backendURL + 'users/' + id, param);
   }
 
   //Boards

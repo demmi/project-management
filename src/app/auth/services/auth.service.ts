@@ -29,4 +29,9 @@ export class AuthService {
       this.isLogged$.subscribe((isAuth) => resolve(isAuth));
     });
   }
+
+  editUser(id: string, user: User): Observable<User> {
+    return this.api.userPut(id, user);
+  }
+
 }

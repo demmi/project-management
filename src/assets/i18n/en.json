@@ -44,5 +44,7 @@
   "description": "Description",
   "task": "Task",
   "edit": "Edit",
-  "save": "Save"
+  "save": "Save",
+  "edit_profile": "Edit profile",
+  "new_password": "New password"
 }
