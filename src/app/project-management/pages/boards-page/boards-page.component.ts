@@ -41,6 +41,5 @@ export class BoardsPageComponent implements OnInit {
 
   sort(event: Event) {
     console.log(event);
-    console.log(this.sortBoards.tasksAll);
   }
 }
