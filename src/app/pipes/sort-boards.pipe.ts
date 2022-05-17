@@ -24,17 +24,24 @@ export class SortBoardsPipe implements PipeTransform {
     }
 
     if (type === 'order') {
-      const idBoards: string[] = this.boardsSort.tasksAll.filter(task => task.order === +search).map((task) => task.boardId);
+      const idBoards: string[] = this.boardsSort.tasksAll.filter(task => task.order === +(search.trim())).map((task) => task.boardId);
       return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
     }
 
-    /*     if (type === 'description') {
-
+    if (type === 'description') {
+      const idBoards: string[] = this.boardsSort.tasksAll.filter(task => task.description.includes(search)).map((task) => task.boardId);
+      return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
     }
 
     if (type === 'users') {
-
-    } */
+      const idUsers: string[] = this.boardsSort.usersAll.filter(user => user.name.includes(search)).map(user => user.id);
+      let idBoards: string[] = [];
+      if (idUsers.length !== 0) {
+        idBoards = this.boardsSort.tasksAll.filter(task =>  idUsers.indexOf(task.userId) !== -1);
+      }
+      console.log(idUsers, idBoards);
+      return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
+    }
 
     return [];
   }
