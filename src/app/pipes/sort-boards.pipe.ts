@@ -12,7 +12,7 @@ export class SortBoardsPipe implements PipeTransform {
   transform(
     boards: Board[],
     search: string,
-    type: string = 'title',
+    type: string,
   ): Board[] {
     if (!search.trim()) {
       return boards;
@@ -22,6 +22,19 @@ export class SortBoardsPipe implements PipeTransform {
       const idBoards: string[] = this.boardsSort.tasksAll.filter(task => task.title.includes(search)).map((task) => task.boardId);
       return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
     }
+
+    if (type === 'order') {
+      const idBoards: string[] = this.boardsSort.tasksAll.filter(task => task.order === +search).map((task) => task.boardId);
+      return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
+    }
+
+    /*     if (type === 'description') {
+
+    }
+
+    if (type === 'users') {
+
+    } */
 
     return [];
   }
