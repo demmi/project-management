@@ -32,5 +32,4 @@ export class BoardsPageComponent implements OnInit {
   ngOnInit(): void {
     this.boards$ = this.boardsService.entities$;
   }
-
 }
