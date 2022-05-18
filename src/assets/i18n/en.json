@@ -42,5 +42,9 @@
   "add_task": "Add task",
   "submit": "Submit",
   "description": "Description",
-  "task": "Task"
+  "task": "Task",
+  "task_title": "Task title",
+  "task_order": "Task order",
+  "task_description": "Task description",
+  "task_users_name": "Users name"
 }

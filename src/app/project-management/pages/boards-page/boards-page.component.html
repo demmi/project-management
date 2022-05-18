@@ -3,9 +3,10 @@
     <mat-form-field class="options">
       <mat-label>{{ t("options") }}</mat-label>
       <mat-select [(ngModel)]="selectedValue" name="option">
-        <mat-option *ngFor="let option of options" [value]="option.value">{{
-          option.viewValue
-        }}</mat-option>
+        <mat-option value="title">{{ t("task_title") }}</mat-option>
+        <mat-option value="order">{{ t("task_order") }}</mat-option>
+        <mat-option value="description">{{ t("task_description") }}</mat-option>
+        <mat-option value="users">{{ t("task_users_name") }}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="search">
@@ -14,7 +15,6 @@
         matInput
         type="text"
         [(ngModel)]="valueSearch"
-        (input)="sort($event)"
       />
       <button
         *ngIf="valueSearch"

@@ -37,9 +37,8 @@ export class SortBoardsPipe implements PipeTransform {
       const idUsers: string[] = this.boardsSort.usersAll.filter(user => user.name.includes(search)).map(user => user.id);
       let idBoards: string[] = [];
       if (idUsers.length !== 0) {
-        idBoards = this.boardsSort.tasksAll.filter(task =>  idUsers.indexOf(task.userId) !== -1);
+        idBoards = this.boardsSort.tasksAll.filter(task =>  idUsers.indexOf(task.userId) !== -1).map((task) => task.boardId);
       }
-      console.log(idUsers, idBoards);
       return boards.filter((board) => board.id ? idBoards.indexOf(board.id) !== -1 : false);
     }
 

@@ -42,5 +42,9 @@
   "add_task": "Добавить задачу",
   "submit": "Подтвердить",
   "description": "Описание",
-  "task": "Задача"
+  "task": "Задача",
+  "task_title": "Название задачи",
+  "task_order": "Номер задачи",
+  "task_description": "Описание задачи",
+  "task_users_name": "Имя пользователя"
 }
