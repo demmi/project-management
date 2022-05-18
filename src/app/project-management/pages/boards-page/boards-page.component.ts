@@ -5,7 +5,6 @@ import { BoardEntityService } from '../../services/boards/board-entity.service';
 
 interface Options {
   value: string;
-  viewValue: string;
 }
 
 @Component({
@@ -21,10 +20,10 @@ export class BoardsPageComponent implements OnInit {
   selectedValue: string = 'title';
 
   options: Options[] = [
-    { value: 'title', viewValue: 'Task title' },
-    { value: 'order', viewValue: 'Task order' },
-    { value: 'description', viewValue: 'Task description' },
-    { value: 'users', viewValue: 'Users' },
+    { value: 'title' },
+    { value: 'order' },
+    { value: 'descr' },
+    { value: 'users' },
   ];
 
   constructor(private boardsService: BoardEntityService) {}
