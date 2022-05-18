@@ -8,7 +8,6 @@ import { MainPageComponent } from './pages/main-page/main-page.component';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 import { AddBoardDialogComponent } from './components/header/add-board/add-board-dialog.component';
 import { TaskDialogComponent } from '../project-management/components/task/add-edit-task-modal/task-modal';
-
 @NgModule({
   declarations: [
     FooterComponent,
@@ -19,10 +18,7 @@ import { TaskDialogComponent } from '../project-management/components/task/add-e
     AddBoardDialogComponent,
     TaskDialogComponent,
   ],
-  imports: [
-    SharedModule,
-    RouterModule,
-  ],
+  imports: [SharedModule, RouterModule],
   exports: [
     FooterComponent,
     HeaderComponent,

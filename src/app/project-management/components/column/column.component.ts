@@ -8,7 +8,11 @@ import { ConfirmationModalComponent } from '../../../core/components/confirmatio
 import { TaskEntityService } from '../../services/tasks/task-entity.service';
 import { map, Observable, tap } from 'rxjs';
 import { TaskDialogComponent } from '../task/add-edit-task-modal/task-modal';
-
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+} from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-column',
@@ -16,7 +20,6 @@ import { TaskDialogComponent } from '../task/add-edit-task-modal/task-modal';
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent implements OnInit {
-
   @Input() column: Column;
 
   form: FormGroup;
@@ -26,6 +29,8 @@ export class ColumnComponent implements OnInit {
   in = true;
 
   futureTaskIndex: number;
+
+  tasksData: Task[];
 
   constructor(
     private columnService: ColumnEntityService,
@@ -37,11 +42,14 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.createForm();
-    this.tasks$ = this.taskService.entities$
-      .pipe(
-        map(tasks => tasks.filter((task => task.columnId === this.column.id))),
-        tap(tasks => this.futureTaskIndex = tasks.length),
-      );
+    this.tasks$ = this.taskService.entities$.pipe(
+      map((tasks) => tasks.filter((task) => task.columnId === this.column.id)),
+      tap((tasks) => (this.futureTaskIndex = tasks.length)),
+    );
+    this.taskService.entities$.pipe(
+      map((tasks) => tasks.filter((task) => task.columnId === this.column.id)),
+      tap((tasks) => (this.futureTaskIndex = tasks.length)),
+    ).subscribe(tasks => this.tasksData = tasks);
   }
 
   private createForm(): FormGroup {
@@ -58,7 +66,7 @@ export class ColumnComponent implements OnInit {
           entityType: 'column',
           entity: this.column,
         },
-      },
+      }
     );
   }
 
@@ -83,5 +91,23 @@ export class ColumnComponent implements OnInit {
         order: this.futureTaskIndex,
       },
     });
+  }
+
+  drop(event: CdkDragDrop<any>) {
+    console.log(event);
+    if (event.previousContainer === event.container) {
+      moveItemInArray(
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
   }
 }
