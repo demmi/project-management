@@ -6,18 +6,22 @@ import { LoginSignupPageComponent } from './pages/login-signup-page/login-signup
 import { StoreModule } from '@ngrx/store';
 import * as fromAuth from './store/redusers/auth.redusers';
 import { EffectsModule } from '@ngrx/effects';
+import { UserEditComponent } from './components/user-edit/user-edit.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   declarations: [
     LoginComponent,
     SignupComponent,
     LoginSignupPageComponent,
+    UserEditComponent,
   ],
-  imports: [
-    SharedModule,
-    StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
-    EffectsModule.forFeature([]),
-  ],
-  exports: [LoginSignupPageComponent],
+    imports: [
+        SharedModule,
+        StoreModule.forFeature(fromAuth.authFeatureKey, fromAuth.reducer),
+        EffectsModule.forFeature([]),
+        RouterModule,
+    ],
+  exports: [LoginSignupPageComponent, UserEditComponent],
 })
 export class AuthModule {}

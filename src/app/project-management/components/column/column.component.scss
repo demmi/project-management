@@ -2,10 +2,8 @@
 
 .column-container {
   width: 350px;
-  height: 100%;
 
   .column {
-    height: 100%;
 
     .column-header {
       display: flex;
@@ -23,10 +21,11 @@
   }
 
   mat-card-content {
-    min-height: 800px;
+    height: calc(100vh - 280px);
     display: flex;
     flex-direction: column;
     gap: 5px;
     padding: 5px;
+    overflow-y: auto;
   }
 }

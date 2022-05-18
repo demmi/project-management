@@ -1,0 +1,36 @@
+.login-page {
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: calc(100vh - 164px);
+  display: block;
+  background-color: #303F9F;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+
+  mat-card {
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    min-width: 275px;
+    margin: 10% auto;
+    border-radius: 8px;
+
+    &-title {
+      text-align:center;
+    }
+  }
+
+  form {
+   display: flex;
+   flex-direction: column;
+  }
+}
+
+.button-container {
+  display: flex;
+  gap: 10px;
+}
