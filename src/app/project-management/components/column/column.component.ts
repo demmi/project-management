@@ -8,15 +8,13 @@ import { ConfirmationModalComponent } from '../../../core/components/confirmatio
 import { TaskEntityService } from '../../services/tasks/task-entity.service';
 import { map, Observable, tap } from 'rxjs';
 import { TaskDialogComponent } from '../task/add-edit-task-modal/task-modal';
-
-
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-column',
   templateUrl: './column.component.html',
   styleUrls: ['./column.component.scss'],
 })
 export class ColumnComponent implements OnInit {
-
   @Input() column: Column;
 
   form: FormGroup;
@@ -26,6 +24,8 @@ export class ColumnComponent implements OnInit {
   in = true;
 
   futureTaskIndex: number;
+
+  columnId: string;
 
   constructor(
     private columnService: ColumnEntityService,
@@ -37,11 +37,10 @@ export class ColumnComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.createForm();
-    this.tasks$ = this.taskService.entities$
-      .pipe(
-        map(tasks => tasks.filter((task => task.columnId === this.column.id))),
-        tap(tasks => this.futureTaskIndex = tasks.length),
-      );
+    this.tasks$ = this.taskService.entities$.pipe(
+      map((tasks) => tasks.filter((task) => task.columnId === this.column.id)),
+      tap((tasks) => (this.futureTaskIndex = tasks.length)),
+    );
   }
 
   private createForm(): FormGroup {
@@ -84,5 +83,10 @@ export class ColumnComponent implements OnInit {
         mode: 'create',
       },
     });
+  }
+
+  drop(event: CdkDragDrop<any>) {
+    console.log(event.previousContainer.data);
+    console.log(event.container.data);
   }
 }

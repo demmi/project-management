@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { SNACK_BAR_CONFIG } from '../constants/constants';
 
 @Injectable()
 export class HttpErrorsInterceptor implements HttpInterceptor {
@@ -25,11 +26,7 @@ export class HttpErrorsInterceptor implements HttpInterceptor {
     this._snackBar.open(
       err.error.message,
       'Ok',
-      {
-        horizontalPosition: 'center',
-        verticalPosition: 'top',
-        duration: 5000,
-      },
+      SNACK_BAR_CONFIG,
     );
   }
 
