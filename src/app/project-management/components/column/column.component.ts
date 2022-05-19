@@ -32,14 +32,14 @@ export class ColumnComponent implements OnInit {
     private emmitService: EmmitService,
     private fb: FormBuilder,
     private dialog: MatDialog,
-    private taskService: TaskEntityService,
+    private taskService: TaskEntityService
   ) {}
 
   ngOnInit(): void {
     this.form = this.createForm();
     this.tasks$ = this.taskService.entities$.pipe(
       map((tasks) => tasks.filter((task) => task.columnId === this.column.id)),
-      tap((tasks) => (this.futureTaskIndex = tasks.length)),
+      tap((tasks) => (this.futureTaskIndex = tasks.length))
     );
   }
 
@@ -57,7 +57,7 @@ export class ColumnComponent implements OnInit {
           entityType: 'column',
           entity: this.column,
         },
-      },
+      }
     );
   }
 
@@ -86,7 +86,8 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>) {
-    console.log(event.previousContainer.data);
-    console.log(event.container.data);
+    console.log(event);
+    /*     console.log(event.previousContainer.data);
+    console.log(event.container.data); */
   }
 }
