@@ -25,7 +25,7 @@
   "about_sergey": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae assumenda animi placeat nulla quaerat magni magnam cumque deleniti. Velit dolorum dolore doloremque error delectus quod quidem doloribus! Fuga, in!",
   "rustam": "Rustam Satlykov",
   "about_rustam": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae assumenda animi placeat nulla quaerat magni magnam cumque deleniti. Velit dolorum dolore doloremque error delectus quod quidem doloribus! Fuga, in!",
-  "andrew": "Andrew Gerasimchik",
+  "andrew": "Andrei Herasimchyk",
   "about_andrew": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad beatae assumenda animi placeat nulla quaerat magni magnam cumque deleniti. Velit dolorum dolore doloremque error delectus quod quidem doloribus! Fuga, in!",
   "main_video_title": "Video about the application",
   "not_found_title": "PAGE NOT FOUND",
@@ -50,5 +50,6 @@
   "title": "Task title",
   "order": "Task order",
   "descr": "Description",
-  "users": "Users"
+  "users": "Users",
+  "export": "Export to Exel"
 }
