@@ -1,7 +1,9 @@
 <div class="column-container" *transloco="let t">
   <mat-card class="column">
     <div class="column-header">
-      <mat-card-title *ngIf="in; else input" (click)="onClickHead()">{{ column.title }}</mat-card-title>
+      <mat-card-title *ngIf="in; else input" (click)="onClickHead()">{{
+        column.title
+      }}</mat-card-title>
       <ng-template #input>
         <form (ngSubmit)="updateColumnTitle()" [formGroup]="form">
           <button mat-mini-fab color="warn" type="button" (click)="in = true">
@@ -11,7 +13,7 @@
             <mat-icon>check_circle</mat-icon>
           </button>
           <mat-form-field>
-            <input matInput formControlName="title">
+            <input matInput formControlName="title" />
           </mat-form-field>
         </form>
       </ng-template>
@@ -19,13 +21,27 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
-        <button mat-menu-item (click)="addTaskDialog()">{{t('add_task')}}</button>
-        <button mat-menu-item (click)="deleteColumn()">{{t('delete')}}</button>
+        <button mat-menu-item (click)="addTaskDialog()">
+          {{ t("add_task") }}
+        </button>
+        <button mat-menu-item (click)="deleteColumn()">
+          {{ t("delete") }}
+        </button>
       </mat-menu>
     </div>
-    <mat-card-content>
-      <app-task *ngFor="let task of tasks$ | async;"
-                [task]="task"></app-task>
+    <mat-card-content
+      cdkDropList
+      [cdkDropListData]="column"
+      class="list"
+      (cdkDropListDropped)="drop($event)"
+      id="{{ column.id }}"
+    >
+      <app-task
+        *ngFor="let task of tasks$ | async"
+        [task]="task"
+        cdkDrag
+        class="box"
+      ></app-task>
     </mat-card-content>
   </mat-card>
 </div>
