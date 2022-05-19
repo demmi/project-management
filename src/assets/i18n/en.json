@@ -50,5 +50,6 @@
   "title": "Task title",
   "order": "Task order",
   "descr": "Description",
-  "users": "Users"
+  "users": "Users",
+  "export": "Export to Exel"
 }
