@@ -20,6 +20,7 @@ export interface Task {
   boardId?: string;
   userId?: string;
   columnId?: string;
+  files?: any[];
 }
 
 export interface ConfirmDialogData {
@@ -33,7 +34,9 @@ export interface AddColumnDialogData {
 }
 
 export interface TaskDialogData {
-  boardId: string;
-  columnId: string;
-  order: number;
+  boardId?: string;
+  columnId?: string;
+  order?: number;
+  task?: Task;
+  mode: 'edit' | 'create';
 }

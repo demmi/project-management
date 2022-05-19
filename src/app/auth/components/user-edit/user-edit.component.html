@@ -1,0 +1,69 @@
+<div class="login-page" *transloco="let t">
+  <mat-card>
+    <mat-card-title>{{t('edit_profile')}}</mat-card-title>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="t('name')"
+            formControlName="name">
+          <mat-error *ngIf="name?.hasError('required')">
+            {{t('nameReq')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="t('logIn')"
+            formControlName="login">
+          <mat-error *ngIf="login?.hasError('required')">
+            {{t ('loginReq')}}
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            matInput
+            [placeholder]="t('new_password')"
+            formControlName="password"
+            [type]="hidePassword ? 'password' : 'text'">
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            (click)="hidePassword = !hidePassword">
+            <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+          <mat-error
+            *ngIf="password?.hasError('required')">
+            {{t('passReq')}}
+          </mat-error>
+        </mat-form-field>
+
+        <div class="button-container">
+          <button
+            *ngIf="!showSpinner"
+            mat-raised-button
+            color="primary"
+            class="login-button">
+            {{t('save')}}
+          </button>
+
+          <a
+            *ngIf="!showSpinner"
+            mat-raised-button
+            color="primary"
+            class="login-button"
+            routerLink="/">
+            {{t('cancel')}}
+          </a>
+        </div>
+
+
+      </form>
+      <mat-spinner *ngIf="showSpinner" diameter="60"></mat-spinner>
+    </mat-card-content>
+  </mat-card>
+</div>

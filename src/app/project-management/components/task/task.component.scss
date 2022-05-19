@@ -1,6 +1,9 @@
 mat-card {
   background-color: #B0C4DE;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
   mat-card-title {
     font-size: 20px;

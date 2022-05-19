@@ -80,6 +80,7 @@ export class ColumnComponent implements OnInit {
         boardId: this.column.boardId,
         columnId: this.column.id,
         order: this.futureTaskIndex,
+        mode: 'create',
       },
     });
   }

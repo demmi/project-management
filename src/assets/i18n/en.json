@@ -43,8 +43,12 @@
   "submit": "Submit",
   "description": "Description",
   "task": "Task",
-  "task_title": "Task title",
-  "task_order": "Task order",
-  "task_description": "Task description",
-  "task_users_name": "Users name"
+  "edit": "Edit",
+  "save": "Save",
+  "edit_profile": "Edit profile",
+  "new_password": "New password",
+  "title": "Task title",
+  "order": "Task order",
+  "descr": "Description",
+  "users": "Users"
 }

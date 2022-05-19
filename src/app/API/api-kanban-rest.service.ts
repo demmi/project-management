@@ -27,8 +27,8 @@ export class ApiKanbanRestService {
     return this.http.get<User[]>(this.backendURL + 'users');
   }
 
-  userGet(id: string) {
-    return this.http.get(this.backendURL + 'users/' + id);
+  userGet(id: string): Observable<User> {
+    return this.http.get<User>(this.backendURL + 'users/' + id);
   }
 
   userDelete(id: string) {
@@ -36,8 +36,8 @@ export class ApiKanbanRestService {
   }
 
   //Param interface?
-  userPut(id: string, param: Object) {
-    return this.http.put(this.backendURL + 'users/' + id, param);
+  userPut(id: string, param: User) {
+    return this.http.put<User>(this.backendURL + 'users/' + id, param);
   }
 
   //Boards
@@ -107,12 +107,14 @@ export class ApiKanbanRestService {
     return this.http.get(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
-  taskDelete(boardId: string, columId: string, taskId: string) {
-    return this.http.delete(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
+  taskDelete(boardId: string, columId: string, taskId: string): Observable<number | string> {
+    return this.http
+      .delete<number | string>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId);
   }
 
-  taskPut(boardId: string, columId: string, taskId: string, param: Task) {
-    return this.http.put(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId, param);
+  taskPut(boardId: string, columId: string, taskId: string, param: Task): Observable<Task> {
+    return this.http
+      .put<Task>(this.backendURL + 'boards/' + boardId + '/columns/' + columId + '/tasks/' + taskId, param);
   }
 
   //Upload/Download file
