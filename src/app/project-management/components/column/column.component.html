@@ -42,6 +42,7 @@
       <app-task
         *ngFor="let task of tasks$ | async"
         [task]="task"
+        [cdkDragData]="task"
         cdkDrag
         class="box"
       ></app-task>

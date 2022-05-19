@@ -9,6 +9,7 @@ import { TaskEntityService } from '../../services/tasks/task-entity.service';
 import { map, Observable, tap } from 'rxjs';
 import { TaskDialogComponent } from '../task/add-edit-task-modal/task-modal';
 import { CdkDragDrop } from '@angular/cdk/drag-drop';
+import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
 import * as FileSaver from 'file-saver';
 
 @Component({
@@ -41,6 +42,7 @@ export class ColumnComponent implements OnInit {
     private fb: FormBuilder,
     private dialog: MatDialog,
     private taskService: TaskEntityService,
+    private api: ApiKanbanRestService,
   ) {}
 
   ngOnInit(): void {
@@ -122,7 +124,14 @@ export class ColumnComponent implements OnInit {
   }
 
   drop(event: CdkDragDrop<any>) {
-    console.log(event.previousContainer.data);
-    console.log(event.container.data);
+    const newTask: Task = { ...event.item.data };
+    this.taskService.updateOneInCache({ ...newTask, columnId: event.container.data.id, order: event.currentIndex });
+    const { id, files, ...rest } = newTask;
+    this.api.taskPut(
+      newTask.boardId as string,
+      newTask.columnId as string,
+      newTask.id as string,
+      { ...rest, columnId: event.container.data.id },
+    ).subscribe();
   }
 }
