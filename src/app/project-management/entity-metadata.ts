@@ -1,4 +1,5 @@
 import { EntityMetadataMap } from '@ngrx/data';
+import { Task } from '../interface/interface';
 
 export const entityMetadata: EntityMetadataMap = {
   Board: {
@@ -14,6 +15,7 @@ export const entityMetadata: EntityMetadataMap = {
     },
   },
   Task: {
+    sortComparer: (a: Task, b: Task) => a.order - b.order,
     entityDispatcherOptions: {
       optimisticUpdate: true,
       optimisticDelete: true,
