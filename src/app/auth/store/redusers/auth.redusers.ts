@@ -43,4 +43,10 @@ export const reducer = createReducer(
       token: action.token,
     };
   }),
+  on(AuthActions.userUpdate, (state, action): AuthState => {
+    return {
+      ...state,
+      user: action.user,
+    };
+  }),
 );

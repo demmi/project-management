@@ -19,3 +19,8 @@ export const setToken = createAction(
   '[Auth Effect] Set Token',
   props<{ token: string }>(),
 );
+
+export const userUpdate = createAction(
+  '[User Edit] Edit User Profile',
+  props<{ user: User }>(),
+);
