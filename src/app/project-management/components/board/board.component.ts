@@ -11,7 +11,7 @@ import { UserEntityService } from '../../services/users/user-entity.service';
 import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
 import { TaskEntityService } from '../../services/tasks/task-entity.service';
 import { MergeStrategy } from '@ngrx/data';
-
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',

@@ -7,7 +7,6 @@ import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
 
 @Injectable({ providedIn: 'root' })
 export class BoardsDataService extends DefaultDataService<Board> {
-
   constructor(
     http: HttpClient,
     httpUrlGenerator: HttpUrlGenerator,
@@ -27,5 +26,4 @@ export class BoardsDataService extends DefaultDataService<Board> {
   override delete(key: string): Observable<number | string> {
     return this.api.boardDelete(key);
   }
-
 }

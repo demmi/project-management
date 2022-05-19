@@ -31,9 +31,10 @@
     </div>
     <mat-card-content
       cdkDropList
-      (cdkDropListDropped)="drop($event)"
-      [cdkDropListData]="tasksData"
+      [cdkDropListData]="column"
       class="list"
+      (cdkDropListDropped)="drop($event)"
+      id="{{ column.id }}"
     >
       <app-task
         *ngFor="let task of tasks$ | async"
