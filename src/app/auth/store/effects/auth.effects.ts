@@ -77,6 +77,20 @@ export class AuthEffects {
     { dispatch: false },
   );
 
+  userUpdate$ = createEffect(
+    () => {
+      return this.actions$
+        .pipe(
+          ofType(AuthActions.userUpdate),
+          tap(action => {
+            localStorage.setItem('user', JSON.stringify(action.user));
+            this.router.navigateByUrl('/boards');
+          }),
+        );
+    },
+    { dispatch: false },
+  );
+
   constructor(
     private actions$: Actions,
     private authService: AuthService,
