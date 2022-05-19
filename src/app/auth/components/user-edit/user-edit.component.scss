@@ -12,6 +12,8 @@
   overflow: hidden;
 
   mat-card {
+    display: flex;
+    flex-direction: column;
     width: 30%;
     min-width: 275px;
     margin: 10% auto;
@@ -21,7 +23,14 @@
       text-align:center;
     }
   }
+
+  form {
+   display: flex;
+   flex-direction: column;
+  }
 }
 
-
-
+.button-container {
+  display: flex;
+  gap: 10px;
+}

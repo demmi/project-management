@@ -1,0 +1,31 @@
+<form [formGroup]="form" (ngSubmit)="submit()" *transloco="let t">
+  <h2>{{ t("task") }}</h2>
+  <div class="inputs">
+    <mat-form-field appearance="fill">
+      <mat-label>{{ t("column_title") }}</mat-label>
+      <input matInput formControlName="title"/>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>{{ t("description") }}</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>User</mat-label>
+      <mat-select formControlName="userId">
+        <mat-option *ngFor="let user of users$ | async" [value]="user.id">
+          {{user.login}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>{{ t("close") }}</button>
+    <button mat-button type="submit" *ngIf="data.mode === 'create'">{{ t("ok") }}</button>
+    <button mat-button type="button" *ngIf="edit"
+            (click)="disableEnableControls(false); edit = false">{{ t("edit") }}</button>
+    <button mat-button type="submit" *ngIf="!edit && data.mode === 'edit'">{{ t("save") }}</button>
+    <button mat-button type="button" color="warn"
+            *ngIf="data.mode === 'edit'"
+            (click)="deleteTask()">{{ t("delete") }}</button>
+  </div>
+</form>

@@ -8,5 +8,4 @@ export class TaskEntityService extends EntityCollectionServiceBase<Task> {
   constructor(serviceElementFactory: EntityCollectionServiceElementsFactory) {
     super('Task', serviceElementFactory);
   }
-
 }

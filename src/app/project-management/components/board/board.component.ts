@@ -4,11 +4,14 @@ import { AddColumnDialogComponent } from './add-column-dialog/add-column-dialog.
 import { ActivatedRoute } from '@angular/router';
 import { BoardEntityService } from '../../services/boards/board-entity.service';
 import { map, Observable, Subscription, tap } from 'rxjs';
-import { Board, Column, AddColumnDialogData } from '../../../interface/interface';
+import { Board, Column, AddColumnDialogData, Task } from '../../../interface/interface';
 import { ColumnEntityService } from '../../services/columns/column-entity.service';
 import { User } from '../../../auth/model/user.interface';
 import { UserEntityService } from '../../services/users/user-entity.service';
-
+import { ApiKanbanRestService } from '../../../API/api-kanban-rest.service';
+import { TaskEntityService } from '../../services/tasks/task-entity.service';
+import { MergeStrategy } from '@ngrx/data';
+import { CdkDragDrop } from '@angular/cdk/drag-drop';
 @Component({
   selector: 'app-board',
   templateUrl: './board.component.html',
@@ -28,7 +31,7 @@ export class BoardComponent implements OnInit, OnDestroy {
 
   nextColumnOrder: number = 0;
 
-  orderSub: Subscription;
+  boardSub: Subscription;
 
   constructor(
     private dialog: MatDialog,
@@ -36,44 +39,48 @@ export class BoardComponent implements OnInit, OnDestroy {
     private boardsService: BoardEntityService,
     private columnService: ColumnEntityService,
     private userService: UserEntityService,
+    private taskService: TaskEntityService,
+    private api: ApiKanbanRestService,
   ) {}
 
   ngOnInit(): void {
-    let columnsLoaded: boolean = false;
-    let usersLoaded: boolean = false;
     this.boardId = this.route.snapshot.params['id'];
+
+    this.boardSub = this.api.boardGet(this.boardId)
+      .pipe(
+        tap((board: Board) => {
+          const tasksToCache: Task[] = [];
+          const columns: Column[] | undefined = board.columns?.map((column: Column) => {
+            const { tasks, ...rest } = column;
+            tasks?.forEach(task => tasksToCache.push({ ...task, boardId: board.id, columnId: column.id }));
+            return { ...rest, boardId: board.id };
+          });
+          this.boardsService.addOneToCache(
+            { id: board.id, title: board.title },
+            { mergeStrategy: MergeStrategy.IgnoreChanges },
+          );
+          this.taskService.addManyToCache(
+            [...tasksToCache],
+            { mergeStrategy: MergeStrategy.IgnoreChanges },
+          );
+          if (columns)
+            this.columnService.addManyToCache(
+              [...columns],
+              { mergeStrategy: MergeStrategy.IgnoreChanges },
+            );
+        }),
+      ).subscribe();
+
     this.board$ = this.boardsService.entities$
       .pipe(
         map(boards => boards.find(board => board.id === this.boardId)),
       );
+
     this.columns$ = this.columnService.entities$
       .pipe(
-        tap(() => {
-          if (!columnsLoaded) {
-            this.columnService.getWithQuery(this.boardId);
-            columnsLoaded = true;
-          }
-        }),
+        tap((columns: Column[]) => this.nextColumnOrder = columns.length),
         map(columns => columns.filter(column => column.boardId === this.boardId)),
       );
-    this.users$ = this.userService.entities$
-      .pipe(
-        tap(() => {
-          if (!usersLoaded) {
-            this.userService.getAll();
-            usersLoaded = true;
-          }
-        }),
-      );
-    this.orderSub = this.columns$
-      .pipe(
-        map(columns => {
-          if (columns) {
-            return columns.length;
-          }
-          return 0;
-        }),
-      ).subscribe(order => this.nextColumnOrder = order);
   }
 
   openAddColumnDialog(): void {
@@ -89,8 +96,8 @@ export class BoardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this.orderSub) {
-      this.orderSub.unsubscribe();
+    if (this.boardSub) {
+      this.boardSub.unsubscribe();
     }
   }
 }

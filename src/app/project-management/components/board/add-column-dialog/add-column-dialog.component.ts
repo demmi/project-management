@@ -44,7 +44,9 @@ export class AddColumnDialogComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.addBoardSub.unsubscribe();
+    if (this.addBoardSub) {
+      this.addBoardSub.unsubscribe();
+    }
   }
 
 }
