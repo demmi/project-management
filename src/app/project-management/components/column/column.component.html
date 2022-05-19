@@ -21,6 +21,9 @@
         <mat-icon>menu</mat-icon>
       </button>
       <mat-menu #menu="matMenu" xPosition="before">
+        <button mat-menu-item (click)="xlsExport()">
+          {{ t("export") }}
+        </button>
         <button mat-menu-item (click)="addTaskDialog()">
           {{ t("add_task") }}
         </button>
